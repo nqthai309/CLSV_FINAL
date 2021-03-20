@@ -1,0 +1,119 @@
+﻿
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Areas/Backend/Views/Shared/Backend.cshtml";
+}
+@{ var id = ViewData["hotel_id"] as String;}
+
+<div class="card">
+    <div class="card-header"><strong>Thêm phòng khách sạn</strong> </div>
+    <div class="card-body">
+        <form class="form-horizontal" action="/BackendHotel/AddHotelRoomCenter" method="post" enctype="multipart/form-data">
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="text-input">Mã Khách Sạn</label>
+                <div class="col-md-9">
+                    <input class="form-control" id="" type="text" name="hotel_id" value="@id" placeholder="Mã Khách Sạn" readonly>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="text-input">Ảnh 1</label>
+                <div class="col-md-9">
+                    <input class="form-control" onchange="change1()" id="browser1" type="file" name="" placeholder="Ảnh 1">
+                    <img style="width:150px; height:150px" id="img1"/>
+                    <input hidden name="detail_header_image_url_1" id="ip1"/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="text-input">Ảnh 2</label>
+                <div class="col-md-9">
+                    <input class="form-control" onchange="change2()" id="browser2" type="file" name="" placeholder="Ảnh 2">
+                    <img style="width:150px; height:150px" id="img2" />
+                    <input hidden name="detail_header_image_url_2" id="ip2" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="text-input">Ảnh 3</label>
+                <div class="col-md-9">
+                    <input class="form-control" onchange="change3()" id="browser3" type="file" name="" placeholder="Ảnh 3">
+                    <img style="width:150px; height:150px" id="img3" />
+                    <input hidden name="detail_header_image_url_3" id="ip3" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="text-input">Ảnh 4</label>
+                <div class="col-md-9">
+                    <input class="form-control" onchange="change4()" id="browser4" type="file" name="" placeholder="Ảnh 4">
+                    <img style="width:150px; height:150px" id="img4" />
+                    <input hidden name="detail_header_image_url_4" id="ip4" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="text-input">Diện tích</label>
+                <div class="col-md-9">
+                    <input class="form-control" id="" type="number" name="acreage" placeholder="Diện tích">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="text-input">Tầng</label>
+                <div class="col-md-9">
+                    <input class="form-control" id="" type="number" name="floors" placeholder="Tầng">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="text-input">Số người</label>
+                <div class="col-md-9">
+                    <input class="form-control" id="" type="number" name="limit_people" placeholder="Số người">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="text-input">Số giường</label>
+                <div class="col-md-9">
+                    <input class="form-control" id="" type="number" name="bed_count" placeholder="Số giường">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="text-input">Giá</label>
+                <div class="col-md-9">
+                    <input class="form-control" id="" type="number" name="price" placeholder="Giá">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="text-input">Giá khuyến mãi</label>
+                <div class="col-md-9">
+                    <input class="form-control" id="" type="number" name="sell_price" placeholder="Giá khuyến mãi">
+                </div>
+            </div>
+
+            <div style="color:red; font-size:20px; text-align:center" id="divThongBao"></div>
+            <div class="card-footer">
+                <button id="btnThem" class="btn btn-sm btn-primary" type="submit"> Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    function change1() {
+        var path = document.getElementById("browser1").value;
+        path = path.split('fakepath')[1];
+        document.getElementById("img1").src = "\\Anh_DTB\\" + path;
+        document.getElementById("ip1").value = "\\Anh_DTB\\" + path;
+    }
+    function change2() {
+        var path = document.getElementById("browser2").value;
+        path = path.split('fakepath')[1];
+        document.getElementById("img2").src = "\\Anh_DTB\\" + path;
+        document.getElementById("ip2").value = "\\Anh_DTB\\" + path;
+    }
+    function change3() {
+        var path = document.getElementById("browser3").value;
+        path = path.split('fakepath')[1];
+        document.getElementById("img3").src = "\\Anh_DTB\\" + path;
+        document.getElementById("ip3").value = "\\Anh_DTB\\" + path;
+    }
+    function change4() {
+        var path = document.getElementById("browser4").value;
+        path = path.split('fakepath')[1];
+        document.getElementById("img4").src = "\\Anh_DTB\\" + path;
+        document.getElementById("ip4").value = "\\Anh_DTB\\" + path;
+    }
+</script>

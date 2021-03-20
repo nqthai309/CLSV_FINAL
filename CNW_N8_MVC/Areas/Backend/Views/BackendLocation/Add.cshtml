@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Areas/Backend/Views/Shared/Backend.cshtml";
+}
+
+<div class="card">
+    <div class="card-header"><strong>Thêm Địa Danh</strong> </div>
+    <div class="card-body">
+        <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="text-input">Tên Địa Danh</label>
+                <div class="col-md-9">
+                    <input class="form-control" id="" type="text" name="" placeholder="Tên địa danh">
+                </div>
+            </div>
+
+            <div style="color:red; font-size:20px; text-align:center" id="divThongBao"></div>
+            <div class="card-footer">
+                <button id="btnThem" class="btn btn-sm btn-primary" type="submit"> Submit</button>
+            </div>
+        </form>
+    </div>
+</div>

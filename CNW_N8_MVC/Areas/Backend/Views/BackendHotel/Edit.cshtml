@@ -1,0 +1,83 @@
+﻿
+@{ IEnumerable<CNW_N8_MVC.Models.locations> listLocations = ViewData["listLocations"] as IEnumerable<CNW_N8_MVC.Models.locations>; }
+@using CNW_N8_MVC.Class;
+@using CNW_N8_MVC.Models;
+@model dynamic
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Areas/Backend/Views/Shared/Backend.cshtml";
+}
+@{ var hotel = ViewData["hotel"] as BE_ItemHotel;}
+@{ var locList = ViewData["locList"] as IEnumerable<ItemLocation>;}
+
+
+
+<div class="card">
+    <div class="card-header"><strong></strong> Sửa khách sạn</div>
+    <div class="card-body">
+        <form class="form-horizontal" action="/BackendHotel/EditHotel" method="post" enctype="multipart/form-data">
+
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="select1">Địa Điểm</label>
+                <div class="col-md-9">
+                    <select class="form-control" id="location_id" name="location_id">
+                        @foreach (var it in locList)
+                        {
+                            if (it.Location_name == hotel.Location_name)
+                            {
+                                <option selected="selected" value="@it.Location_id">@it.Location_name</option>
+                            }
+                            else
+                            {
+                                <option value="@it.Location_id">@it.Location_name</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="text-input">Tên Khách Sạn</label>
+                <div class="col-md-9">
+                    <input class="form-control" id="description" type="text" name="hotel_name" placeholder="Tên Khách Sạn" value="@hotel.Hotel_name">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="text-input">Ảnh Đại Diện</label>
+                <div class="col-md-9">
+                    <input class="form-control" id="description" type="text" name="image_url" placeholder="Ảnh Đại Diện" value="@hotel.Image_url">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="text-input">Hạng</label>
+                <div class="col-md-9">
+                    <input class="form-control" id="description" type="number" name="star" placeholder="Hạng" value="@hotel.Star">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="text-input">Mô Tả</label>
+                <div class="col-md-9">
+                    <input class="form-control" id="description" type="text" name="description" placeholder="Mô Tả" value="@hotel.Description">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="text-input">Chi tiết địa chỉ</label>
+                <div class="col-md-9">
+                    <input class="form-control" id="hotel_namee" type="text" name="location_details" placeholder="Chi tiết địa chỉ" value="@hotel.Location_details">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="text-input">Số điện thoại</label>
+                <div class="col-md-9">
+                    <input class="form-control" id="hotel_namee" type="text" name="hotel_hotline" placeholder="số điện thoại" value="@hotel.Hotel_hotline">
+                </div>
+            </div>
+            <input hidden name="booking_count" value="@hotel.Booking_count" />
+            <input hidden name="hotel_id" value="@hotel.Hotel_id" />
+            <div style="color:red; font-size:20px; text-align:center" id="divThongBao"></div>
+            <div class="card-footer">
+                <button id="btnSua" class="btn btn-sm btn-primary" type="submit"> Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+@*<script src="~/Scripts/js/EditHotel.js"></script>*@

@@ -1,0 +1,47 @@
+﻿
+@using CNW_N8_MVC.Models;
+@using CNW_N8_MVC.Class;
+@model dynamic
+
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Areas/Backend/Views/Shared/Backend.cshtml";
+}
+@{ var hotels = ViewData["hotels"] as IEnumerable<BE_ItemHotel>;}
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header"><i class="fa fa-align-justify"></i> Danh sách Hotel</div>
+            <div class="card-body">
+                <table class="table table-responsive-sm">
+                    <thead>
+                        <tr>
+                            <th>Tên Địa Danh</th>
+                            <th>Tên khách sạn</th>
+                            <th>Hạng</th>
+                            <th>Hotline</th>
+                            <th> </th>
+                            <th> </th>
+                            <th> </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var it in hotels)
+                        {
+                        <tr>
+                            <td>@it.Location_name</td>
+                            <td>@it.Hotel_name</td>
+                            <td>@it.Star</td>
+                            <td>@it.Hotel_hotline</td>
+                            <td><a href="@Url.Action("AddHotelRoom","BackendHotel", new { @id = it.Hotel_id})">Thêm phòng </a></td>
+                            <td><a href="@Url.Action("Edit","BackendHotel", new { @hotel_id = it.Hotel_id})">Sửa</a></td>
+                            <td><a style="color:red" href="@Url.Action("DeleteHotel","BackendHotel",new { @id = it.Hotel_id})">Xoá</a></td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

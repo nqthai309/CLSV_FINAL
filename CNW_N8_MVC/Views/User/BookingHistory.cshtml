@@ -1,0 +1,148 @@
+﻿
+@{
+    ViewBag.Title = "User Booking";
+    Layout = "~/Views/Shared/List.cshtml";
+}
+@*@{ string username = ViewData["username"] as String;}
+    @using CNW_N8_MVC.Models;*@
+
+@*@model Cart*@
+<form method="post" action="/User/ThanhToan/">
+    <section class="main-content" style="background-color : #e9ecef">
+        <div class="container">
+            <div class="row no-gutters">
+                <div class="col-md-3">
+                    <div class="user-info-box bg-white">
+                        <div class="user-profile-img">
+                            <img src="/Content/img/profile-user.png" alt="">
+                        </div>
+                        <h5 class="user-name">Tên người dùng</h5>
+                        <table class="table table-bordered user-promote-table">
+                        </table>
+                        <div class="user-menu-box">
+                            <ul class="text-left">
+                                <li class="align-items-center d-flex">
+                                    <img src="/Content/font/notepad.svg" alt="">
+                                    <a href="@Url.Action("Booking", "User")" class="ml-2">Đơn Hàng</a>
+                                </li>
+                                <li class="align-items-center d-flex selected">
+                                    <img src="/Content/font/notepad.svg" alt="">
+                                    <a href="@Url.Action("BookingHistory", "User")" class="ml-2">Lịch sử mua bán</a>
+                                </li>
+                                <li class="align-items-center d-flex">
+                                    <img src="/Content/font/cogwheel.svg" alt="">
+                                    <a href="@Url.Action("Config", "User")" class="ml-2">Cài Đặt</a>
+                                </li>
+                                <li class="align-items-center d-flex">
+                                    <img src="/Content/font/dashbroad.svg" alt="">
+                                    <a href="@Url.Action("Logout","User")" class="ml-2">Logout</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="user-main-box bg-white">
+                        <p>Danh sách lịch sử mua bán</p>
+                        @*<div class="p-3">
+                                <div class="box-white mb30 p15">
+                                    <div class="filter-header mb15">
+                                        <div class="row vertical-center pt-3 pb-3 panel-border-grey panel-bg-red">
+                                            <div class="col">
+                                                <p class=" semi-bold">Tên</p>
+                                            </div>
+                                            <div class="col text-center">
+                                                <p class=" semi-bold">Số Đêm</p>
+                                            </div>
+                                            <div class="col text-center">
+                                                <p class=" semi-bold">D.Vụ</p>
+                                            </div>
+                                            <div class="col text-center">
+                                                <p class=" semi-bold">TT D.Vụ</p>
+                                            </div>
+                                            <div class="col text-center">
+                                                <p style="margin-right:55px" class=" semi-bold">Thành Tiền</p>
+                                            </div>
+                                            <div class="col text-center">
+                                                <p style="margin-right:55px" class=" semi-bold"> </p>
+                                            </div>
+                                            <div class="clear-fix"></div>
+                                        </div>
+                                        <div id="list_bookings" class="accordion filter-accordion">
+                                            <div class="panel" data-room-id="booking1">
+                                                @foreach (var it in Model.lines)
+                                                {
+                                                    if (it.Product.Status_checking == "hotel")
+                                                    {
+                                                        <div class="row pt-3 pb-3 panel-row panel-border-grey" id="row_@it.Product.Id+@it.Product.Name">
+                                                            <div class="col">@it.Product.Name</div>
+                                                            <div class="col text-center">@it.Quantity</div>
+                                                            <div class="col text-center">@it.SelectDichVu</div>
+                                                            <div class="col text-center">@it.ThanhTienDichVu</div>
+                                                            <div class="col text-center">@((it.Quantity * int.Parse(it.Product.Sell_price.ToString())+it.ThanhTienDichVu).ToString()) VNĐ</div>
+                                                            <div class="col text-center">
+                                                                <a style="margin-right:5px; color:red;" href="@Url.Action("RemoveLine","User",new { @id = it.Product.Id, @checkin = it.Product.Checkin , @status_checking = "hotel"})">Xoá</a>
+                                                            </div>
+                                                            <div class="clear-fix"></div>
+                                                        </div>
+                                                    }
+                                                    if (it.Product.Status_checking == "homestay")
+                                                    {
+                                                        <div class="row pt-3 pb-3 panel-row panel-border-grey" id="row_@it.Product.Id+@it.Product.Name">
+                                                            <div class="col">@it.Product.Name</div>
+                                                            <div class="col text-center">@it.Quantity</div>
+                                                            <div class="col text-center">@it.SelectDichVu</div>
+                                                            <div class="col text-center">@it.ThanhTienDichVu</div>
+                                                            <div class="col text-center">@((it.Quantity * int.Parse(it.Product.Sell_price.ToString())+it.ThanhTienDichVu).ToString()) VNĐ</div>
+                                                            <div class="col text-center">
+                                                                <a style="margin-right:5px; color:red;" href="@Url.Action("RemoveLine","User",new { @id = it.Product.Id, @checkin = it.Product.Checkin , @status_checking = "hotel"})">Xoá</a>
+                                                            </div>
+                                                            <div class="clear-fix"></div>
+                                                        </div>
+                                                    }
+                                                }
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>*@
+
+                        <table style="width:100%; border: 1px solid black; border-collapse: collapse;">
+                            <tr>
+                                <th style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">Tên khách sạn</th>
+                                <th style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">Địa chỉ</th>
+                                <th style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">Mã phòng</th>
+                                <th style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">Ngày đến</th>
+                                <th style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">Ngày về</th>
+                                <th style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">D.vụ</th>
+                                <th style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">Tổng tiền</th>
+                                <th style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">Ngày Đặt</th>
+                                <th style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">Trạng thái</th>
+                            </tr>
+                            <tr>
+                                <td style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">Khách sạn abc</td>
+                                <td style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">số 31, đường Hồ Tùng Mậu, phường Mai Dịch, Quận Cầu Giấy, Hà Nội</td>
+                                <td style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">1</td>
+                                <td style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">2020/10/10</td>
+                                <td style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">2020/10/16</td>
+                                <td style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">Xe lăn, Buffet sáng, xe đưa đón</td>
+                                <td style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">10000000</td>
+                                <td style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">2020/10/05</td>
+                                <td style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">Đã thanh toán</td>
+                            </tr>
+                        </table>
+
+                        <div id="divThongBao"></div>
+
+                    </div>
+                    <div class="mt-3">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>
+<script src="~/Scripts/js/ThanhToan.js"></script>

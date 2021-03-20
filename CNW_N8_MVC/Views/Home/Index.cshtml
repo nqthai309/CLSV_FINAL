@@ -1,0 +1,122 @@
+﻿
+@using CNW_N8_MVC.Class;
+@model dynamic
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Home.cshtml";
+}
+
+<section class="top-destination home-section">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="fs32">Những Địa Danh Nổi Tiếng</h2>
+
+        </div>
+        <div class="top-destination-list mt-5">
+            <div class="row">
+                @foreach (ItemLocation it in Model.itemLocations)
+                {
+                    <div class="col-sm-3">
+                        <div class="destination-item">
+                            <a href="@Url.Action("ListHotel","Hotel2", new { @location_name = @it.Location_name})">
+                                <img src="@it.Image_url" alt="">
+                                <div class="centered text-white">@it.Location_name</div>
+                            </a>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+
+    </div>
+</section>
+<section class="featured-ticket home-section">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="fs32">Khách Sạn</h2>
+            <h3 class="fs16">Khách Sạn Được Đánh Giá Nhiều Nhất</h3>
+        </div>
+        <div class="position-relative full-width pt-5">
+            <div class="row">
+
+                @{ int t = 0;}
+                @foreach (ItemHotel it in Model.itemHotels)
+                {
+                    t += 1;
+                    if (t > 4) { break; }
+                    else
+                    {
+                        <div class="col-sm-3">
+                            <div class="soutchai-item" style="height:400px">
+                                <div class="m_justify_list m_radius_box act_card act_card_sm a_sd_move j_activity_item js-item block-item">
+                                    <a href="@Url.Action("ListRoom", "Hotel2", new { @hotel_id = it.HotelID })">
+                                        <div class="soutchai-item-img">
+                                            <img src="@it.Image_url" style="width:270px; height:150px" />
+                                            <div class="top-left">
+                                                <i class="fas fa-map-marker-alt fs13"></i>
+                                                <span class="t_white">@it.Address</span>
+                                            </div>
+                                        </div>
+                                        <ul class="">
+                                            <li class="position-relative">
+                                                <b class="title">@it.HotelName</b>
+                                            </li>
+                                            <li class="position-relative" style="margin-top:5px">
+                                                @for (int star = 0; star < it.Star; star++)
+                                                {
+                                                    <img src="~/image/unnamed.jpg" style="width:30px; height:30px" />
+                                                }
+                                            </li>
+                                            <p class="fs12 text-grey">
+
+                                            <p style="font-size:13px; margin-top:6px">@it.Description</p>
+                                            </p>
+                                            <li class="price pt-2">
+                                                <p>
+                                                    <span class="latest_price color-main"><b>@it.MinPrice - @it.MaxPrice đ/ngày</b></span>
+                                                </p>
+                                                <i style="margin-top:25px; font-size:13px">
+                                                    @it.AddressDetail
+                                                </i>
+                                                <p class="fs12 text-grey">
+                                                <p style="font-size:13px; margin-top:6px">Bình Luận (@it.TotalComment)</p>
+                                            </li>
+                                        </ul>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+            <div class="text-center">
+                <a href="@Url.Action("ListHotel", "Hotel2")">
+                    <div class="more-destination d-inline-block align-items-center">
+                        <i class="fas fa-map-marker-alt fs20 d-inline-block"></i>
+                        <span class="d-inline-block">Xem tất cả Hotel</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="partner mt-5">
+    <div class="container">
+        <div class="partner-brand">
+            <h2 class="fs32 text-center">ĐỐI TÁC</h2>
+            <h3 class="fs16 text-grey-light2 text-center">Đối Tác Chiến Lược Của TTHT Travel</h3>
+
+        </div>
+
+    </div>
+</section>
+
+<script src="Content/vendor/jquery/jquery-3.4.1.min.js"></script>
+<script src="Content/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="Content/vendor/fontawesome/js/all.min.js"></script>
+<script src="Content/vendor/swiper/dist/js/swiper.min.js"></script>
+<script src="Content/vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+<script src="Content/js/common.js"></script>

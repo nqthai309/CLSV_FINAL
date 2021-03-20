@@ -1,0 +1,339 @@
+﻿
+@{
+    ViewBag.Title = "Hotel Detail";
+    Layout = "~/Views/Shared/List.cshtml";
+}
+@using CNW_N8_MVC.Class;
+@using PagedList.Mvc;
+@{ var rooms = ViewData["rooms"] as IEnumerable<ItemListRoom>;}
+@{ var hotel_current = ViewData["current_hotel"] as ItemHotel;}
+@{ var convenientList = ViewData["convenientList"] as IEnumerable<ItemConvenient>;}\
+@{ var hotelList = ViewData["hotelList"] as IEnumerable<ItemHotel>;}
+@{ var listServiceByHotel = ViewData["listService"] as IEnumerable<ItemHotelService>;}
+@{ var commentList = ViewData["commentList"] as IEnumerable<ItemComment>;}
+@{ var convenientSelect = ViewData["convenientSelect"] as IEnumerable<String>;}
+@{ var username = ViewData["username"] as String;}
+@{ var idAccount = ViewData["idAccount"] as String;}
+@{ var message = ViewData["message"] as String;}
+@{ var hotline = ViewData["hotline"] as String;}
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="/Content/datePicker/jquery-ui.css">
+
+<script src="/Content/datePicker/jquery-1.12.4.js"></script>
+<script src="/Content/datePicker/jquery-ui.js"></script>
+<script>
+    $(function () {
+
+
+        $("#MyDate1").datepicker({
+
+        });
+    });
+</script>
+
+<section class="main-content">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item"><a href="#">Hotel</a></li>
+            </ol>
+        </nav>
+        <div class="row" id="main-content">
+            <div class="col-sm-5">
+                <div class="w3-content" style="max-width:1200px">
+                    <img class="mySlides" src="@hotel_current.Detail_header_image_url" style="width:100%;display:none">
+                    <img class="mySlides" src="@hotel_current.Detail_header_image_url" style="width:100%;display:block">
+                    <img class="mySlides" src="@hotel_current.Detail_header_image_url" style="width:100%;display:none">
+                    @*<div class="w3-row-padding w3-section">
+                        @foreach (var it in rooms)
+                        {
+                            <div class="w3-col s4">
+                                <img class="demo opacity hover-opacity-off" src="@it.Detail_header_image_url_1" style="width:100%;cursor:pointer" onclick="currentDiv(1)">
+                            </div>
+                        }
+                    </div>*@
+
+                </div>
+                <div class="mt-2">
+                    <h5 class="text-main semi-bold">@hotel_current.Description</h5>
+                    
+                </div>
+            </div>
+            <div class="col-sm-7" id="content">
+                <div class="hotel-information">
+                    <div class="">
+                        <h4 class="color-main semi-bold">@hotel_current.HotelName</h4>
+                    </div>
+                    <div>
+                        @for (int i = 0; i < hotel_current.Star; i++)
+                        {
+                            <i class="fas fa-star" style="color:yellow"></i>
+                        }
+                    </div>
+                    <div class="mt-2">
+                        <p class="fs14">Địa chỉ: @hotel_current.AddressDetail</p>
+                    </div>
+                    <div class="mt-2">
+                        <p class="fs14">Khoảng giá: @hotel_current.MinPrice - @hotel_current.MaxPrice</p>
+                    </div>
+                    <div class="mt-2">
+                        <p class="fs14">Hotline: @hotline</p>
+                    </div>
+                    @*<div class="mt-2">
+            @if (hotel_current.HotelName != null)
+            {
+                <p class="fs14">
+                   @hotel_current.AddressDetail
+                </p>
+            }
+        </div>*@
+                </div>
+                <hr class="mt-2 mb-5">
+                <div class="package-options">
+                    <div class="">
+                        <h5 class="text-main semi-bold">Lựa chọn phòng</h5>
+                    </div>
+                    <div class="options-area">
+                        <form method="get" action="#">
+                            <p class="fs16 text-black"></p>
+                            <div class="p-3" style="width:732px">
+                                <table class="table table-responsive-sm" style="width:732px">
+                                    <thead style="width:732px">
+                                        <tr style="background-color: #ebebeb;font-size: 14px; width:732px;">
+                                            <th style="width:150px; text-align:center">Số phòng</th>
+                                            <th style="width:200px; text-align:center">Diện tích (m2)</th>
+                                            <th style="width:203px; text-align:center">Giá phòng/Ngày</th>
+                                            <th style="width:300px; text-align:center">Giá khuyến mãi/Ngày</th>
+                                            <th style="width:20px"> </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var it in rooms)
+                                        {
+                                            <tr class="clicker" style="font-size:13px;text-align:center">
+                                                <td>@it.Hotel_rooms_id </td>
+                                                <td>@it.Acreage</td>
+                                                <td>@it.Price</td>
+                                                <td style="color:red">@it.Sell_price</td>
+                                                
+                                            </tr>
+                                            <tr class="hidden" style="display: none; background-color: #ebebeb;font-size:13px;text-align:center; width:732px;">
+                                                <td>Số giường: @it.Bed_count</td>
+                                                <td>Diện tích: @it.Acreage</td>
+                                                <td>Giới hạn người: @it.Limit_people</td>
+                                                <td>Tầng: @it.Floors</td>
+                                                <td> </td>
+                                                <td> </td>
+                                            </tr>
+                                            <tr class="hidden" style="display: none; background-color: #ebebeb;font-size:13px;text-align:center">
+                                                <td><img class="mySlides" src="@it.Detail_header_image_url_1" style="width:150px;height:100px;display:block"></td>
+                                                <td><img class="mySlides" src="@it.Detail_header_image_url_2" style="width:150px;height:100px;display:block"></td>
+                                                <td><img class="mySlides" src="@it.Detail_header_image_url_3" style="width:150px;height:100px;display:block"></td>
+                                                <td><img class="mySlides" src="@it.Detail_header_image_url_4" style="width:150px;height:100px;display:block"></td>
+                                                <td> </td>
+                                            </tr>
+                                            <tr class="hidden" style="display: none; background-color: #ebebeb;font-size:13px;text-align:center">
+                                                <td style="width:300px"><input type="date" class="form-control sc-datepicker check-in" name="check_in" id="checkin"></td>
+                                                <td style="width:300px"><input type="date" class="form-control sc-datepicker check-out" name="check_out" id="checkout"></td>
+                                                <td><input type="checkbox" id="@it.Hotel_rooms_id" /> </td>
+                                                <td> </td>
+                                                <td> </td>
+
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="p-2">
+                                <h5 class="text-main semi-bold">Danh sách tiện nghi của khách sạn: </h5>
+                                <div class="row" style="font-size:18px;color:dimgray">
+                                    @foreach (var it in convenientList)
+                                    {
+                                        <div class="col-sm-6">
+                                                <p style="margin-left:30px;">
+                                                    <img src="@it.Convenient_image" style="width:30px; height:30px"/>   @it.Convenient_name
+                                                </p>
+                                        </div>
+                                    }
+                                </div>
+                                <hr class="mt-3 mb-3">
+                                <div class="">
+                                    <h5 class="text-main semi-bold">Lựa chọn dịch vụ</h5>
+                                </div>
+                                <div class="row" style="font-size:18px;color:dimgray">
+                                    @foreach (var it in listServiceByHotel)
+                                    {
+                                        <div class="col-sm-6">
+                                                <p style="margin-left:15px;"><input type="checkbox" id="" name="convenient+@it.Service_id" style="margin-left:20px; align-content:center; font-family" />
+                                                    <img src="@it.Service_image" style="width:30px; height:30px"/>@it.Service_name +@it.Unit_price
+                                                </p>
+                                        </div>
+
+                                    }
+                                </div>
+                                <hr class="mt-1 mb-3">
+                            </div>
+                            <div class="p-1">
+                                <h5 class="text-main semi-bold">Lựa chọn ngày</h5>
+                                <div class="form-inline">
+                                    <div class="date-picker-booking form-group mr-3">
+                                        <p class="fs14 text-left mr-3">Ngày đến</p>
+                                        <div class="input-with-message">
+                                            <input type="date" class="form-control sc-datepicker check-in" name="check_in" id="checkin">
+                                        </div>
+                                    </div>
+                                    <div class="date-picker-booking form-group">
+                                        <p class="fs14 text-left mr-3">Ngày Về</p>
+                                        <div class="input-with-message">
+                                            <input type="date" class="form-control sc-datepicker check-out" name="check_out" id="checkout">
+                                        </div>
+
+                                    </div>
+                                    
+                                </div>
+                                <hr class="mt-3 mb-3">
+                                <div style="color:red; font-size:20px; margin-left:10px" id="divThongBao"></div>
+                                <div class="package-payment-info">
+                                    
+                                    <div class="package-price-wrapper">
+                                        <div class="package-price-content-wrapper">
+                                            @*<div class="package-price-box col-sm-5">
+                                                <div class="package-price-detail">
+                                                    <p class="package-price-total"><span class="j-totalPrice">@Model.hotel.sell_price vnđ</span></p>
+                                                    <div class="act_result__cost_detail act_result__cost_detail--inline j-cost_detail">
+                                                    </div>
+                                                </div>
+                                            </div>*@
+                                            <div class="package-price-btn-box col-sm-6">
+                                                <button id="datphong" class="btn btn-buy" type="submit">
+                                                    ĐẶT PHÒNG
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <hr class="mt-5 mb-5 line">
+                <div class="expect-area">
+                    <div class="">
+                        <h3 class="text-red fs26">Người dùng đánh giá gì về khách sạn ?</h3>
+                    </div>
+                    <div style="display:flex; flex-direction:column">
+                        <b style="font-size:14px; margin-bottom:10px">Bình Luận</b>
+                        @if (username != null)
+                        {
+                            <form method="post" , action="/Hotel2/SendComment">
+                                <div hidden id="user_id">@idAccount</div>
+                                <textarea ondurationchange="textChange()" id="contentComment" name="contentComment" style="width:100%; height:70px; margin-bottom:20px"></textarea>
+                                <button type="submit" id="btnSend" style="width:150px; height:30px; margin-bottom:20px">Gửi bình luận</button>
+                            </form>
+                        }
+                        @foreach (var it in commentList)
+                        {
+                            <div style="display:flex; flex-direction:row; margin-top:20px">
+                                <img src="~/image/user.jpg" style="width:40px; height:40px" />
+                                <div style="display:flex; flex-direction:column">
+                                    <b style="font-size:14px; color:dimgray; margin-left:10px">@it.Username</b>
+                                    <ul style="font-size:12px; margin-left:10px; margin-top:5px;color:gray">
+                                        @it.Content
+                                    </ul>
+                                    <br />
+
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr class="mt-5 mb-5">
+        <div class="more-items pb-5">
+            <div class="">
+                <h3 class="text-main semi-bold">Khách sạn tương tự</h3>
+            </div>
+            <div class="position-relative full-width pt-5">
+                <div class="row">
+
+                    @{ int t = 0;}
+                    @foreach (ItemHotel it in hotelList)
+                    {
+                        t += 1;
+                        if (t > 4) { break; }
+                        else
+                        {
+                            <div class="col-sm-3">
+                                <div class="soutchai-item" style="height: 250px">
+                                    <div class="m_justify_list m_radius_box act_card act_card_sm a_sd_move j_activity_item js-item block-item">
+                                        <a href="@Url.Action("DetailHotel", "Hotel2", new { @hotel_id = it.HotelID })">
+                                            <div class="soutchai-item-img">
+                                                <img src="@it.Image_url" style="width:270px; height:150px" />
+                                                <div class="top-left">
+                                                    <i class="fas fa-map-marker-alt fs13"></i>
+                                                    <span class="t_white">@it.Address</span>
+                                                </div>
+                                            </div>
+                                            <ul class="">
+                                                <li class="position-relative">
+                                                    <p class="title" style="font-size:15px">@it.HotelName</p>
+                                                </li>
+                                                <li class="position-relative" style="margin-top:5px">
+                                                    <p style="font-size: 12px">
+                                                        Đánh giá:
+                                                        @for (int star = 0; star < it.Star; star++)
+                                                        {
+                                                            <i class="fas fa-star" style="color:yellow"></i>
+                                                        }
+                                                    </p>
+                                                </li>
+                                                <li class="price pt-2">
+                                                    <p>
+                                                        <span class="latest_price color-main"><b>@it.MinPrice - @it.MaxPrice đ/ngày</b></span>
+                                                    </p>
+                                                </li>
+                                            </ul>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    $('.clicker').click(function () {
+        $(this).nextUntil('.clicker').slideToggle('normal');
+    });
+</script>
+<script src="~/Scripts/js/DetailHotel.js"></script>
+<script>
+    function currentDiv(n) {
+        showDivs(slideIndex = n);
+    }
+
+    function showDivs(n) {
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("demo");
+        if (n > x.length) { slideIndex = 1 }
+        if (n < 1) { slideIndex = x.length }
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" w3-opacity-off", "");
+        }
+        x[slideIndex - 1].style.display = "block";
+        dots[slideIndex - 1].className += " w3-opacity-off";
+    }
+</script>

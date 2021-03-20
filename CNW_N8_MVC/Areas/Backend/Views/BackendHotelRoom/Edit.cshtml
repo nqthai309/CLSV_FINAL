@@ -1,0 +1,130 @@
+﻿
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Areas/Backend/Views/Shared/Backend.cshtml";
+}
+@using CNW_N8_MVC.Class;
+@{ var hr = ViewData["hr"] as BE_ItemHotelRoom;}
+
+<div class="card">
+    <div class="card-header"><strong>Sửa phòng khách sạn</strong> </div>
+    <div class="card-body">
+        <form class="form-horizontal" action="/BackendHotelRoom/EditHotelRoom" method="post" enctype="multipart/form-data">
+
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="text-input">Tên khách sạn</label>
+                <div class="col-md-9">
+                    <input class="form-control" id="hotel_name" readonly type="text" name="hotel_name" placeholder="Ảnh 1" value="@hr.Hotel_name">
+                    <input hidden name="hotel_id" value="@hr.Hotel_id"/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="text-input">Mã Số Phòng</label>
+                <div class="col-md-9">
+                    <input class="form-control" id="hotel_rooms_id" readonly type="text" name="hotel_rooms_id" placeholder="Ảnh 1" value="@hr.Hotel_rooms_id">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="text-input">Ảnh 1</label>
+                <div class="col-md-9">
+                    <input class="form-control" onchange="change1()" id="img_url1" type="file"  placeholder="Ảnh 1" value="@hr.Detail_header_image_url_1">
+                    <img style="width:150px; height:150px"  src="@hr.Detail_header_image_url_1" id="img1"/>
+                    <input name="detail_header_image_url_1" value="@hr.Detail_header_image_url_1" hidden id="ip1" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="text-input">Ảnh 2</label>
+                <div class="col-md-9">
+                    <input class="form-control" onchange="change2()" id="img_url2" type="file" placeholder="Ảnh 2" value="@hr.Detail_header_image_url_2">
+                    <img style="width:150px; height:150px"  src="@hr.Detail_header_image_url_2" id="img2" />
+                    <input name="detail_header_image_url_2" value="@hr.Detail_header_image_url_2" hidden id="ip2"/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="text-input">Ảnh 3</label>
+                <div class="col-md-9">
+                    <input class="form-control" onchange="change3()" id="img_url3" type="file" placeholder="Ảnh 3" value="@hr.Detail_header_image_url_3">
+                    <img style="width:150px; height:150px"  src="@hr.Detail_header_image_url_3" id="img3" />
+                    <input name="detail_header_image_url_3" value="@hr.Detail_header_image_url_3" hidden id="ip3"/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="text-input">Ảnh 4</label>
+                <div class="col-md-9">
+                    <input class="form-control" onchange="change4()" id="img_url4" type="file" placeholder="Ảnh 4" value="@hr.Detail_header_image_url_4">
+                    <img style="width:150px; height:150px"  src="@hr.Detail_header_image_url_4" id="img4" />
+                    <input name="detail_header_image_url_4" value="@hr.Detail_header_image_url_4" hidden id="ip4"/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="text-input">Diện tích</label>
+                <div class="col-md-9">
+                    <input class="form-control" id="acreage" type="number" name="acreage" placeholder="Diện tích" value="@hr.Acreage">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="text-input">Tầng</label>
+                <div class="col-md-9">
+                    <input class="form-control" id="floors" type="number" name="floors" placeholder="Tầng" value="@hr.Floors">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="text-input">Số người</label>
+                <div class="col-md-9">
+                    <input class="form-control" id="limit_people" type="number" name="limit_people" placeholder="Số người" value="@hr.Limit_people">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="text-input">Số giường</label>
+                <div class="col-md-9">
+                    <input class="form-control" id="bed_count" type="number" name="bed_count" placeholder="Số giường" value="@hr.Bed_count">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="text-input">Giá</label>
+                <div class="col-md-9">
+                    <input class="form-control" id="price" type="number" name="price" placeholder="Giá" value="@hr.Price">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="text-input">Giá khuyến mãi</label>
+                <div class="col-md-9">
+                    <input class="form-control" id="sell_price" type="number" name="sell_price" placeholder="Giá khuyến mãi" value="@hr.Sell_price">
+                </div>
+            </div>
+
+
+            <div style="color:red; font-size:20px; text-align:center" id="divThongBao"></div>
+            <div class="card-footer">
+                <button id="btnThem" class="btn btn-sm btn-primary" type="submit"> Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    function change1() {
+        var path = document.getElementById("img_url1").value;
+        path = path.split('fakepath')[1];
+        document.getElementById("img1").src = "\\Anh_DTB\\" + path;
+        document.getElementById("ip1").value = "\\Anh_DTB\\" + path;
+    }
+    function change2() {
+
+        var path = document.getElementById("img_url2").value;
+        path = path.split('fakepath')[1];
+        document.getElementById("img2").src = "\\Anh_DTB\\" + path;
+        document.getElementById("ip2").value = "\\Anh_DTB\\" + path;
+    }
+    function change3() {
+        var path = document.getElementById("img_url3").value;
+        path = path.split('fakepath')[1];
+        document.getElementById("img3").src = "\\Anh_DTB\\" + path;
+        document.getElementById("ip3").value = "\\Anh_DTB\\" + path;
+    }
+    function change4() {
+        var path = document.getElementById("img_url4").value;
+        path = path.split('fakepath')[1];
+        document.getElementById("img4").src = "\\Anh_DTB\\" + path;
+        document.getElementById("ip4").value = "\\Anh_DTB\\" + path;
+    }
+</script>

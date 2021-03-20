@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Areas/Backend/Views/Shared/Backend.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header"><i class="fa fa-align-justify"></i> Danh sách Địa Danh</div>
+            <div class="card-body">
+                <table class="table table-responsive-sm">
+                    <thead>
+                        <tr>
+                            <th>Mã Địa Danh</th>
+                            <th>Tên Địa Danh</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (int i= 0 ; i < 3; i++)
+                        {
+                            <tr>
+                                <td>1</td>
+                                <td>Hà Nội</td>
+                                <td><a href="@Url.Action("EditLocation","BackendLocation", new {})">Sửa</a></td>
+                                <td><a style="color:red" href="@Url.Action("DeleteLocation","BackendLocation",new {})">Xoá</a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

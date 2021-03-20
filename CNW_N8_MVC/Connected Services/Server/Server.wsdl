@@ -1,0 +1,1740 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="FE_FindUserByUser_id">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="user_id" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FE_FindUserByUser_idResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FE_FindUserByUser_idResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FE_FindUserByUsername_Password">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passWord" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FE_FindUserByUsername_PasswordResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FE_FindUserByUsername_PasswordResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FE_LoginCheck">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passWord" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FE_LoginCheckResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FE_LoginCheckResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FE_Register">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="json" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FE_RegisterResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="FE_UpdateUserInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="user_id" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="json" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FE_UpdateUserInfoResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="FE_isUsernameCheck">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FE_isUsernameCheckResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FE_isUsernameCheckResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FE_UpdateUserPassword">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="user_id" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="newPassword" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FE_UpdateUserPasswordResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="FE_GetHotel_OrderByComment">
+        <s:complexType />
+      </s:element>
+      <s:element name="FE_GetHotel_OrderByCommentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FE_GetHotel_OrderByCommentResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FE_GetListLocation">
+        <s:complexType />
+      </s:element>
+      <s:element name="FE_GetListLocationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FE_GetListLocationResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FE_GetBanner">
+        <s:complexType />
+      </s:element>
+      <s:element name="FE_GetBannerResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FE_GetBannerResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FE_GetService">
+        <s:complexType />
+      </s:element>
+      <s:element name="FE_GetServiceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FE_GetServiceResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FE_GetConvenient">
+        <s:complexType />
+      </s:element>
+      <s:element name="FE_GetConvenientResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FE_GetConvenientResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FE_Search_HotelList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="location_name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="hotel_name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="star" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FE_Search_HotelListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FE_Search_HotelListResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FE_Search_Hotel_Service_Convenient">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sv" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="conv" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FE_Search_Hotel_Service_ConvenientResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FE_Search_Hotel_Service_ConvenientResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FE_GetListRoom">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="hotel_id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FE_GetListRoomResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FE_GetListRoomResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FE_GetComment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="hotel_id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FE_GetCommentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FE_GetCommentResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FE_Search_Room">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="hotel_id" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="limitPeople" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="selectPrice" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FE_Search_RoomResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FE_Search_RoomResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FE_Search_Room_Conv">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="conv" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="hotel_id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FE_Search_Room_ConvResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FE_Search_Room_ConvResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FE_Get_Conv_By_hotelID_roomID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="hotel_id" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="hotel_rooms_id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FE_Get_Conv_By_hotelID_roomIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FE_Get_Conv_By_hotelID_roomIDResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FE_Get_Service_by_HotelID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="hotel_id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FE_Get_Service_by_HotelIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FE_Get_Service_by_HotelIDResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FE_GetHistoryOrderOfRoom">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="hotel_id" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="hotel_rooms_id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FE_GetHistoryOrderOfRoomResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FE_GetHistoryOrderOfRoomResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FE_Get_hotline">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="hotel_id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FE_Get_hotlineResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FE_Get_hotlineResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FE_Payment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="list" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="user_id" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="total_booking_price" type="s:float" />
+            <s:element minOccurs="0" maxOccurs="1" name="payment_status" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FE_PaymentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FE_PaymentResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FE_SendComment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="idAccount" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="hotel_id" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="content" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FE_SendCommentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FE_SendCommentResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BE_FindUserByUsername_Password">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passWord" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BE_FindUserByUsername_PasswordResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BE_FindUserByUsername_PasswordResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BE_GetHotelByID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="hotel_id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BE_GetHotelByIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BE_GetHotelByIDResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BE_EditHotel">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="json" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BE_EditHotelResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BE_EditHotelResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BE_GetListHotel">
+        <s:complexType />
+      </s:element>
+      <s:element name="BE_GetListHotelResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BE_GetListHotelResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BE_DeleteHotel">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="hotel_id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BE_DeleteHotelResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BE_DeleteHotelResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BE_GetServiceByIdHotel">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="hotel_id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BE_GetServiceByIdHotelResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BE_GetServiceByIdHotelResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BE_AddHotel">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="newHotel" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="lstServiceName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="lstUnitPrice" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BE_AddHotelResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BE_AddHotelResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BE_GetListHotelRoom">
+        <s:complexType />
+      </s:element>
+      <s:element name="BE_GetListHotelRoomResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BE_GetListHotelRoomResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BE_EditHotelRoom">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="json" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BE_EditHotelRoomResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BE_EditHotelRoomResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BE_DeleteHotelRoom">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="hotel_rooms_id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BE_DeleteHotelRoomResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BE_DeleteHotelRoomResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BE_AddHotelRoom">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="json" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BE_AddHotelRoomResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BE_AddHotelRoomResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetListBooking_BE">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetListBooking_BEResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetListBooking_BEResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConfirmHotelBooking_BE">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConfirmHotelBooking_BEResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="DeleteHotelBooking_BE">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteHotelBooking_BEResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetListHotel_BE">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetListHotel_BEResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetListHotel_BEResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddHotel_BE">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="json" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddHotel_BEResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="EditHotel_BE">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id_old" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="json" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EditHotel_BEResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="DeleteHotel_BE">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteHotel_BEResponse">
+        <s:complexType />
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="FE_FindUserByUser_idSoapIn">
+    <wsdl:part name="parameters" element="tns:FE_FindUserByUser_id" />
+  </wsdl:message>
+  <wsdl:message name="FE_FindUserByUser_idSoapOut">
+    <wsdl:part name="parameters" element="tns:FE_FindUserByUser_idResponse" />
+  </wsdl:message>
+  <wsdl:message name="FE_FindUserByUsername_PasswordSoapIn">
+    <wsdl:part name="parameters" element="tns:FE_FindUserByUsername_Password" />
+  </wsdl:message>
+  <wsdl:message name="FE_FindUserByUsername_PasswordSoapOut">
+    <wsdl:part name="parameters" element="tns:FE_FindUserByUsername_PasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="FE_LoginCheckSoapIn">
+    <wsdl:part name="parameters" element="tns:FE_LoginCheck" />
+  </wsdl:message>
+  <wsdl:message name="FE_LoginCheckSoapOut">
+    <wsdl:part name="parameters" element="tns:FE_LoginCheckResponse" />
+  </wsdl:message>
+  <wsdl:message name="FE_RegisterSoapIn">
+    <wsdl:part name="parameters" element="tns:FE_Register" />
+  </wsdl:message>
+  <wsdl:message name="FE_RegisterSoapOut">
+    <wsdl:part name="parameters" element="tns:FE_RegisterResponse" />
+  </wsdl:message>
+  <wsdl:message name="FE_UpdateUserInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:FE_UpdateUserInfo" />
+  </wsdl:message>
+  <wsdl:message name="FE_UpdateUserInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:FE_UpdateUserInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="FE_isUsernameCheckSoapIn">
+    <wsdl:part name="parameters" element="tns:FE_isUsernameCheck" />
+  </wsdl:message>
+  <wsdl:message name="FE_isUsernameCheckSoapOut">
+    <wsdl:part name="parameters" element="tns:FE_isUsernameCheckResponse" />
+  </wsdl:message>
+  <wsdl:message name="FE_UpdateUserPasswordSoapIn">
+    <wsdl:part name="parameters" element="tns:FE_UpdateUserPassword" />
+  </wsdl:message>
+  <wsdl:message name="FE_UpdateUserPasswordSoapOut">
+    <wsdl:part name="parameters" element="tns:FE_UpdateUserPasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="FE_GetHotel_OrderByCommentSoapIn">
+    <wsdl:part name="parameters" element="tns:FE_GetHotel_OrderByComment" />
+  </wsdl:message>
+  <wsdl:message name="FE_GetHotel_OrderByCommentSoapOut">
+    <wsdl:part name="parameters" element="tns:FE_GetHotel_OrderByCommentResponse" />
+  </wsdl:message>
+  <wsdl:message name="FE_GetListLocationSoapIn">
+    <wsdl:part name="parameters" element="tns:FE_GetListLocation" />
+  </wsdl:message>
+  <wsdl:message name="FE_GetListLocationSoapOut">
+    <wsdl:part name="parameters" element="tns:FE_GetListLocationResponse" />
+  </wsdl:message>
+  <wsdl:message name="FE_GetBannerSoapIn">
+    <wsdl:part name="parameters" element="tns:FE_GetBanner" />
+  </wsdl:message>
+  <wsdl:message name="FE_GetBannerSoapOut">
+    <wsdl:part name="parameters" element="tns:FE_GetBannerResponse" />
+  </wsdl:message>
+  <wsdl:message name="FE_GetServiceSoapIn">
+    <wsdl:part name="parameters" element="tns:FE_GetService" />
+  </wsdl:message>
+  <wsdl:message name="FE_GetServiceSoapOut">
+    <wsdl:part name="parameters" element="tns:FE_GetServiceResponse" />
+  </wsdl:message>
+  <wsdl:message name="FE_GetConvenientSoapIn">
+    <wsdl:part name="parameters" element="tns:FE_GetConvenient" />
+  </wsdl:message>
+  <wsdl:message name="FE_GetConvenientSoapOut">
+    <wsdl:part name="parameters" element="tns:FE_GetConvenientResponse" />
+  </wsdl:message>
+  <wsdl:message name="FE_Search_HotelListSoapIn">
+    <wsdl:part name="parameters" element="tns:FE_Search_HotelList" />
+  </wsdl:message>
+  <wsdl:message name="FE_Search_HotelListSoapOut">
+    <wsdl:part name="parameters" element="tns:FE_Search_HotelListResponse" />
+  </wsdl:message>
+  <wsdl:message name="FE_Search_Hotel_Service_ConvenientSoapIn">
+    <wsdl:part name="parameters" element="tns:FE_Search_Hotel_Service_Convenient" />
+  </wsdl:message>
+  <wsdl:message name="FE_Search_Hotel_Service_ConvenientSoapOut">
+    <wsdl:part name="parameters" element="tns:FE_Search_Hotel_Service_ConvenientResponse" />
+  </wsdl:message>
+  <wsdl:message name="FE_GetListRoomSoapIn">
+    <wsdl:part name="parameters" element="tns:FE_GetListRoom" />
+  </wsdl:message>
+  <wsdl:message name="FE_GetListRoomSoapOut">
+    <wsdl:part name="parameters" element="tns:FE_GetListRoomResponse" />
+  </wsdl:message>
+  <wsdl:message name="FE_GetCommentSoapIn">
+    <wsdl:part name="parameters" element="tns:FE_GetComment" />
+  </wsdl:message>
+  <wsdl:message name="FE_GetCommentSoapOut">
+    <wsdl:part name="parameters" element="tns:FE_GetCommentResponse" />
+  </wsdl:message>
+  <wsdl:message name="FE_Search_RoomSoapIn">
+    <wsdl:part name="parameters" element="tns:FE_Search_Room" />
+  </wsdl:message>
+  <wsdl:message name="FE_Search_RoomSoapOut">
+    <wsdl:part name="parameters" element="tns:FE_Search_RoomResponse" />
+  </wsdl:message>
+  <wsdl:message name="FE_Search_Room_ConvSoapIn">
+    <wsdl:part name="parameters" element="tns:FE_Search_Room_Conv" />
+  </wsdl:message>
+  <wsdl:message name="FE_Search_Room_ConvSoapOut">
+    <wsdl:part name="parameters" element="tns:FE_Search_Room_ConvResponse" />
+  </wsdl:message>
+  <wsdl:message name="FE_Get_Conv_By_hotelID_roomIDSoapIn">
+    <wsdl:part name="parameters" element="tns:FE_Get_Conv_By_hotelID_roomID" />
+  </wsdl:message>
+  <wsdl:message name="FE_Get_Conv_By_hotelID_roomIDSoapOut">
+    <wsdl:part name="parameters" element="tns:FE_Get_Conv_By_hotelID_roomIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="FE_Get_Service_by_HotelIDSoapIn">
+    <wsdl:part name="parameters" element="tns:FE_Get_Service_by_HotelID" />
+  </wsdl:message>
+  <wsdl:message name="FE_Get_Service_by_HotelIDSoapOut">
+    <wsdl:part name="parameters" element="tns:FE_Get_Service_by_HotelIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="FE_GetHistoryOrderOfRoomSoapIn">
+    <wsdl:part name="parameters" element="tns:FE_GetHistoryOrderOfRoom" />
+  </wsdl:message>
+  <wsdl:message name="FE_GetHistoryOrderOfRoomSoapOut">
+    <wsdl:part name="parameters" element="tns:FE_GetHistoryOrderOfRoomResponse" />
+  </wsdl:message>
+  <wsdl:message name="FE_Get_hotlineSoapIn">
+    <wsdl:part name="parameters" element="tns:FE_Get_hotline" />
+  </wsdl:message>
+  <wsdl:message name="FE_Get_hotlineSoapOut">
+    <wsdl:part name="parameters" element="tns:FE_Get_hotlineResponse" />
+  </wsdl:message>
+  <wsdl:message name="FE_PaymentSoapIn">
+    <wsdl:part name="parameters" element="tns:FE_Payment" />
+  </wsdl:message>
+  <wsdl:message name="FE_PaymentSoapOut">
+    <wsdl:part name="parameters" element="tns:FE_PaymentResponse" />
+  </wsdl:message>
+  <wsdl:message name="FE_SendCommentSoapIn">
+    <wsdl:part name="parameters" element="tns:FE_SendComment" />
+  </wsdl:message>
+  <wsdl:message name="FE_SendCommentSoapOut">
+    <wsdl:part name="parameters" element="tns:FE_SendCommentResponse" />
+  </wsdl:message>
+  <wsdl:message name="BE_FindUserByUsername_PasswordSoapIn">
+    <wsdl:part name="parameters" element="tns:BE_FindUserByUsername_Password" />
+  </wsdl:message>
+  <wsdl:message name="BE_FindUserByUsername_PasswordSoapOut">
+    <wsdl:part name="parameters" element="tns:BE_FindUserByUsername_PasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="BE_GetHotelByIDSoapIn">
+    <wsdl:part name="parameters" element="tns:BE_GetHotelByID" />
+  </wsdl:message>
+  <wsdl:message name="BE_GetHotelByIDSoapOut">
+    <wsdl:part name="parameters" element="tns:BE_GetHotelByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="BE_EditHotelSoapIn">
+    <wsdl:part name="parameters" element="tns:BE_EditHotel" />
+  </wsdl:message>
+  <wsdl:message name="BE_EditHotelSoapOut">
+    <wsdl:part name="parameters" element="tns:BE_EditHotelResponse" />
+  </wsdl:message>
+  <wsdl:message name="BE_GetListHotelSoapIn">
+    <wsdl:part name="parameters" element="tns:BE_GetListHotel" />
+  </wsdl:message>
+  <wsdl:message name="BE_GetListHotelSoapOut">
+    <wsdl:part name="parameters" element="tns:BE_GetListHotelResponse" />
+  </wsdl:message>
+  <wsdl:message name="BE_DeleteHotelSoapIn">
+    <wsdl:part name="parameters" element="tns:BE_DeleteHotel" />
+  </wsdl:message>
+  <wsdl:message name="BE_DeleteHotelSoapOut">
+    <wsdl:part name="parameters" element="tns:BE_DeleteHotelResponse" />
+  </wsdl:message>
+  <wsdl:message name="BE_GetServiceByIdHotelSoapIn">
+    <wsdl:part name="parameters" element="tns:BE_GetServiceByIdHotel" />
+  </wsdl:message>
+  <wsdl:message name="BE_GetServiceByIdHotelSoapOut">
+    <wsdl:part name="parameters" element="tns:BE_GetServiceByIdHotelResponse" />
+  </wsdl:message>
+  <wsdl:message name="BE_AddHotelSoapIn">
+    <wsdl:part name="parameters" element="tns:BE_AddHotel" />
+  </wsdl:message>
+  <wsdl:message name="BE_AddHotelSoapOut">
+    <wsdl:part name="parameters" element="tns:BE_AddHotelResponse" />
+  </wsdl:message>
+  <wsdl:message name="BE_GetListHotelRoomSoapIn">
+    <wsdl:part name="parameters" element="tns:BE_GetListHotelRoom" />
+  </wsdl:message>
+  <wsdl:message name="BE_GetListHotelRoomSoapOut">
+    <wsdl:part name="parameters" element="tns:BE_GetListHotelRoomResponse" />
+  </wsdl:message>
+  <wsdl:message name="BE_EditHotelRoomSoapIn">
+    <wsdl:part name="parameters" element="tns:BE_EditHotelRoom" />
+  </wsdl:message>
+  <wsdl:message name="BE_EditHotelRoomSoapOut">
+    <wsdl:part name="parameters" element="tns:BE_EditHotelRoomResponse" />
+  </wsdl:message>
+  <wsdl:message name="BE_DeleteHotelRoomSoapIn">
+    <wsdl:part name="parameters" element="tns:BE_DeleteHotelRoom" />
+  </wsdl:message>
+  <wsdl:message name="BE_DeleteHotelRoomSoapOut">
+    <wsdl:part name="parameters" element="tns:BE_DeleteHotelRoomResponse" />
+  </wsdl:message>
+  <wsdl:message name="BE_AddHotelRoomSoapIn">
+    <wsdl:part name="parameters" element="tns:BE_AddHotelRoom" />
+  </wsdl:message>
+  <wsdl:message name="BE_AddHotelRoomSoapOut">
+    <wsdl:part name="parameters" element="tns:BE_AddHotelRoomResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetListBooking_BESoapIn">
+    <wsdl:part name="parameters" element="tns:GetListBooking_BE" />
+  </wsdl:message>
+  <wsdl:message name="GetListBooking_BESoapOut">
+    <wsdl:part name="parameters" element="tns:GetListBooking_BEResponse" />
+  </wsdl:message>
+  <wsdl:message name="ConfirmHotelBooking_BESoapIn">
+    <wsdl:part name="parameters" element="tns:ConfirmHotelBooking_BE" />
+  </wsdl:message>
+  <wsdl:message name="ConfirmHotelBooking_BESoapOut">
+    <wsdl:part name="parameters" element="tns:ConfirmHotelBooking_BEResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteHotelBooking_BESoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteHotelBooking_BE" />
+  </wsdl:message>
+  <wsdl:message name="DeleteHotelBooking_BESoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteHotelBooking_BEResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetListHotel_BESoapIn">
+    <wsdl:part name="parameters" element="tns:GetListHotel_BE" />
+  </wsdl:message>
+  <wsdl:message name="GetListHotel_BESoapOut">
+    <wsdl:part name="parameters" element="tns:GetListHotel_BEResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddHotel_BESoapIn">
+    <wsdl:part name="parameters" element="tns:AddHotel_BE" />
+  </wsdl:message>
+  <wsdl:message name="AddHotel_BESoapOut">
+    <wsdl:part name="parameters" element="tns:AddHotel_BEResponse" />
+  </wsdl:message>
+  <wsdl:message name="EditHotel_BESoapIn">
+    <wsdl:part name="parameters" element="tns:EditHotel_BE" />
+  </wsdl:message>
+  <wsdl:message name="EditHotel_BESoapOut">
+    <wsdl:part name="parameters" element="tns:EditHotel_BEResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteHotel_BESoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteHotel_BE" />
+  </wsdl:message>
+  <wsdl:message name="DeleteHotel_BESoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteHotel_BEResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ServerSoap">
+    <wsdl:operation name="FE_FindUserByUser_id">
+      <wsdl:input message="tns:FE_FindUserByUser_idSoapIn" />
+      <wsdl:output message="tns:FE_FindUserByUser_idSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FE_FindUserByUsername_Password">
+      <wsdl:input message="tns:FE_FindUserByUsername_PasswordSoapIn" />
+      <wsdl:output message="tns:FE_FindUserByUsername_PasswordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FE_LoginCheck">
+      <wsdl:input message="tns:FE_LoginCheckSoapIn" />
+      <wsdl:output message="tns:FE_LoginCheckSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FE_Register">
+      <wsdl:input message="tns:FE_RegisterSoapIn" />
+      <wsdl:output message="tns:FE_RegisterSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FE_UpdateUserInfo">
+      <wsdl:input message="tns:FE_UpdateUserInfoSoapIn" />
+      <wsdl:output message="tns:FE_UpdateUserInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FE_isUsernameCheck">
+      <wsdl:input message="tns:FE_isUsernameCheckSoapIn" />
+      <wsdl:output message="tns:FE_isUsernameCheckSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FE_UpdateUserPassword">
+      <wsdl:input message="tns:FE_UpdateUserPasswordSoapIn" />
+      <wsdl:output message="tns:FE_UpdateUserPasswordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FE_GetHotel_OrderByComment">
+      <wsdl:input message="tns:FE_GetHotel_OrderByCommentSoapIn" />
+      <wsdl:output message="tns:FE_GetHotel_OrderByCommentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FE_GetListLocation">
+      <wsdl:input message="tns:FE_GetListLocationSoapIn" />
+      <wsdl:output message="tns:FE_GetListLocationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FE_GetBanner">
+      <wsdl:input message="tns:FE_GetBannerSoapIn" />
+      <wsdl:output message="tns:FE_GetBannerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FE_GetService">
+      <wsdl:input message="tns:FE_GetServiceSoapIn" />
+      <wsdl:output message="tns:FE_GetServiceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FE_GetConvenient">
+      <wsdl:input message="tns:FE_GetConvenientSoapIn" />
+      <wsdl:output message="tns:FE_GetConvenientSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FE_Search_HotelList">
+      <wsdl:input message="tns:FE_Search_HotelListSoapIn" />
+      <wsdl:output message="tns:FE_Search_HotelListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FE_Search_Hotel_Service_Convenient">
+      <wsdl:input message="tns:FE_Search_Hotel_Service_ConvenientSoapIn" />
+      <wsdl:output message="tns:FE_Search_Hotel_Service_ConvenientSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FE_GetListRoom">
+      <wsdl:input message="tns:FE_GetListRoomSoapIn" />
+      <wsdl:output message="tns:FE_GetListRoomSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FE_GetComment">
+      <wsdl:input message="tns:FE_GetCommentSoapIn" />
+      <wsdl:output message="tns:FE_GetCommentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FE_Search_Room">
+      <wsdl:input message="tns:FE_Search_RoomSoapIn" />
+      <wsdl:output message="tns:FE_Search_RoomSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FE_Search_Room_Conv">
+      <wsdl:input message="tns:FE_Search_Room_ConvSoapIn" />
+      <wsdl:output message="tns:FE_Search_Room_ConvSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FE_Get_Conv_By_hotelID_roomID">
+      <wsdl:input message="tns:FE_Get_Conv_By_hotelID_roomIDSoapIn" />
+      <wsdl:output message="tns:FE_Get_Conv_By_hotelID_roomIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FE_Get_Service_by_HotelID">
+      <wsdl:input message="tns:FE_Get_Service_by_HotelIDSoapIn" />
+      <wsdl:output message="tns:FE_Get_Service_by_HotelIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FE_GetHistoryOrderOfRoom">
+      <wsdl:input message="tns:FE_GetHistoryOrderOfRoomSoapIn" />
+      <wsdl:output message="tns:FE_GetHistoryOrderOfRoomSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FE_Get_hotline">
+      <wsdl:input message="tns:FE_Get_hotlineSoapIn" />
+      <wsdl:output message="tns:FE_Get_hotlineSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FE_Payment">
+      <wsdl:input message="tns:FE_PaymentSoapIn" />
+      <wsdl:output message="tns:FE_PaymentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FE_SendComment">
+      <wsdl:input message="tns:FE_SendCommentSoapIn" />
+      <wsdl:output message="tns:FE_SendCommentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BE_FindUserByUsername_Password">
+      <wsdl:input message="tns:BE_FindUserByUsername_PasswordSoapIn" />
+      <wsdl:output message="tns:BE_FindUserByUsername_PasswordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BE_GetHotelByID">
+      <wsdl:input message="tns:BE_GetHotelByIDSoapIn" />
+      <wsdl:output message="tns:BE_GetHotelByIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BE_EditHotel">
+      <wsdl:input message="tns:BE_EditHotelSoapIn" />
+      <wsdl:output message="tns:BE_EditHotelSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BE_GetListHotel">
+      <wsdl:input message="tns:BE_GetListHotelSoapIn" />
+      <wsdl:output message="tns:BE_GetListHotelSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BE_DeleteHotel">
+      <wsdl:input message="tns:BE_DeleteHotelSoapIn" />
+      <wsdl:output message="tns:BE_DeleteHotelSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BE_GetServiceByIdHotel">
+      <wsdl:input message="tns:BE_GetServiceByIdHotelSoapIn" />
+      <wsdl:output message="tns:BE_GetServiceByIdHotelSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BE_AddHotel">
+      <wsdl:input message="tns:BE_AddHotelSoapIn" />
+      <wsdl:output message="tns:BE_AddHotelSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BE_GetListHotelRoom">
+      <wsdl:input message="tns:BE_GetListHotelRoomSoapIn" />
+      <wsdl:output message="tns:BE_GetListHotelRoomSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BE_EditHotelRoom">
+      <wsdl:input message="tns:BE_EditHotelRoomSoapIn" />
+      <wsdl:output message="tns:BE_EditHotelRoomSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BE_DeleteHotelRoom">
+      <wsdl:input message="tns:BE_DeleteHotelRoomSoapIn" />
+      <wsdl:output message="tns:BE_DeleteHotelRoomSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BE_AddHotelRoom">
+      <wsdl:input message="tns:BE_AddHotelRoomSoapIn" />
+      <wsdl:output message="tns:BE_AddHotelRoomSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetListBooking_BE">
+      <wsdl:input message="tns:GetListBooking_BESoapIn" />
+      <wsdl:output message="tns:GetListBooking_BESoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConfirmHotelBooking_BE">
+      <wsdl:input message="tns:ConfirmHotelBooking_BESoapIn" />
+      <wsdl:output message="tns:ConfirmHotelBooking_BESoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteHotelBooking_BE">
+      <wsdl:input message="tns:DeleteHotelBooking_BESoapIn" />
+      <wsdl:output message="tns:DeleteHotelBooking_BESoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetListHotel_BE">
+      <wsdl:input message="tns:GetListHotel_BESoapIn" />
+      <wsdl:output message="tns:GetListHotel_BESoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddHotel_BE">
+      <wsdl:input message="tns:AddHotel_BESoapIn" />
+      <wsdl:output message="tns:AddHotel_BESoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EditHotel_BE">
+      <wsdl:input message="tns:EditHotel_BESoapIn" />
+      <wsdl:output message="tns:EditHotel_BESoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteHotel_BE">
+      <wsdl:input message="tns:DeleteHotel_BESoapIn" />
+      <wsdl:output message="tns:DeleteHotel_BESoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ServerSoap" type="tns:ServerSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="FE_FindUserByUser_id">
+      <soap:operation soapAction="http://tempuri.org/FE_FindUserByUser_id" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FE_FindUserByUsername_Password">
+      <soap:operation soapAction="http://tempuri.org/FE_FindUserByUsername_Password" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FE_LoginCheck">
+      <soap:operation soapAction="http://tempuri.org/FE_LoginCheck" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FE_Register">
+      <soap:operation soapAction="http://tempuri.org/FE_Register" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FE_UpdateUserInfo">
+      <soap:operation soapAction="http://tempuri.org/FE_UpdateUserInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FE_isUsernameCheck">
+      <soap:operation soapAction="http://tempuri.org/FE_isUsernameCheck" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FE_UpdateUserPassword">
+      <soap:operation soapAction="http://tempuri.org/FE_UpdateUserPassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FE_GetHotel_OrderByComment">
+      <soap:operation soapAction="http://tempuri.org/FE_GetHotel_OrderByComment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FE_GetListLocation">
+      <soap:operation soapAction="http://tempuri.org/FE_GetListLocation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FE_GetBanner">
+      <soap:operation soapAction="http://tempuri.org/FE_GetBanner" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FE_GetService">
+      <soap:operation soapAction="http://tempuri.org/FE_GetService" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FE_GetConvenient">
+      <soap:operation soapAction="http://tempuri.org/FE_GetConvenient" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FE_Search_HotelList">
+      <soap:operation soapAction="http://tempuri.org/FE_Search_HotelList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FE_Search_Hotel_Service_Convenient">
+      <soap:operation soapAction="http://tempuri.org/FE_Search_Hotel_Service_Convenient" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FE_GetListRoom">
+      <soap:operation soapAction="http://tempuri.org/FE_GetListRoom" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FE_GetComment">
+      <soap:operation soapAction="http://tempuri.org/FE_GetComment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FE_Search_Room">
+      <soap:operation soapAction="http://tempuri.org/FE_Search_Room" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FE_Search_Room_Conv">
+      <soap:operation soapAction="http://tempuri.org/FE_Search_Room_Conv" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FE_Get_Conv_By_hotelID_roomID">
+      <soap:operation soapAction="http://tempuri.org/FE_Get_Conv_By_hotelID_roomID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FE_Get_Service_by_HotelID">
+      <soap:operation soapAction="http://tempuri.org/FE_Get_Service_by_HotelID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FE_GetHistoryOrderOfRoom">
+      <soap:operation soapAction="http://tempuri.org/FE_GetHistoryOrderOfRoom" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FE_Get_hotline">
+      <soap:operation soapAction="http://tempuri.org/FE_Get_hotline" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FE_Payment">
+      <soap:operation soapAction="http://tempuri.org/FE_Payment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FE_SendComment">
+      <soap:operation soapAction="http://tempuri.org/FE_SendComment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BE_FindUserByUsername_Password">
+      <soap:operation soapAction="http://tempuri.org/BE_FindUserByUsername_Password" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BE_GetHotelByID">
+      <soap:operation soapAction="http://tempuri.org/BE_GetHotelByID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BE_EditHotel">
+      <soap:operation soapAction="http://tempuri.org/BE_EditHotel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BE_GetListHotel">
+      <soap:operation soapAction="http://tempuri.org/BE_GetListHotel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BE_DeleteHotel">
+      <soap:operation soapAction="http://tempuri.org/BE_DeleteHotel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BE_GetServiceByIdHotel">
+      <soap:operation soapAction="http://tempuri.org/BE_GetServiceByIdHotel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BE_AddHotel">
+      <soap:operation soapAction="http://tempuri.org/BE_AddHotel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BE_GetListHotelRoom">
+      <soap:operation soapAction="http://tempuri.org/BE_GetListHotelRoom" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BE_EditHotelRoom">
+      <soap:operation soapAction="http://tempuri.org/BE_EditHotelRoom" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BE_DeleteHotelRoom">
+      <soap:operation soapAction="http://tempuri.org/BE_DeleteHotelRoom" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BE_AddHotelRoom">
+      <soap:operation soapAction="http://tempuri.org/BE_AddHotelRoom" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListBooking_BE">
+      <soap:operation soapAction="http://tempuri.org/GetListBooking_BE" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConfirmHotelBooking_BE">
+      <soap:operation soapAction="http://tempuri.org/ConfirmHotelBooking_BE" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteHotelBooking_BE">
+      <soap:operation soapAction="http://tempuri.org/DeleteHotelBooking_BE" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListHotel_BE">
+      <soap:operation soapAction="http://tempuri.org/GetListHotel_BE" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddHotel_BE">
+      <soap:operation soapAction="http://tempuri.org/AddHotel_BE" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditHotel_BE">
+      <soap:operation soapAction="http://tempuri.org/EditHotel_BE" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteHotel_BE">
+      <soap:operation soapAction="http://tempuri.org/DeleteHotel_BE" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ServerSoap12" type="tns:ServerSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="FE_FindUserByUser_id">
+      <soap12:operation soapAction="http://tempuri.org/FE_FindUserByUser_id" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FE_FindUserByUsername_Password">
+      <soap12:operation soapAction="http://tempuri.org/FE_FindUserByUsername_Password" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FE_LoginCheck">
+      <soap12:operation soapAction="http://tempuri.org/FE_LoginCheck" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FE_Register">
+      <soap12:operation soapAction="http://tempuri.org/FE_Register" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FE_UpdateUserInfo">
+      <soap12:operation soapAction="http://tempuri.org/FE_UpdateUserInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FE_isUsernameCheck">
+      <soap12:operation soapAction="http://tempuri.org/FE_isUsernameCheck" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FE_UpdateUserPassword">
+      <soap12:operation soapAction="http://tempuri.org/FE_UpdateUserPassword" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FE_GetHotel_OrderByComment">
+      <soap12:operation soapAction="http://tempuri.org/FE_GetHotel_OrderByComment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FE_GetListLocation">
+      <soap12:operation soapAction="http://tempuri.org/FE_GetListLocation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FE_GetBanner">
+      <soap12:operation soapAction="http://tempuri.org/FE_GetBanner" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FE_GetService">
+      <soap12:operation soapAction="http://tempuri.org/FE_GetService" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FE_GetConvenient">
+      <soap12:operation soapAction="http://tempuri.org/FE_GetConvenient" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FE_Search_HotelList">
+      <soap12:operation soapAction="http://tempuri.org/FE_Search_HotelList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FE_Search_Hotel_Service_Convenient">
+      <soap12:operation soapAction="http://tempuri.org/FE_Search_Hotel_Service_Convenient" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FE_GetListRoom">
+      <soap12:operation soapAction="http://tempuri.org/FE_GetListRoom" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FE_GetComment">
+      <soap12:operation soapAction="http://tempuri.org/FE_GetComment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FE_Search_Room">
+      <soap12:operation soapAction="http://tempuri.org/FE_Search_Room" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FE_Search_Room_Conv">
+      <soap12:operation soapAction="http://tempuri.org/FE_Search_Room_Conv" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FE_Get_Conv_By_hotelID_roomID">
+      <soap12:operation soapAction="http://tempuri.org/FE_Get_Conv_By_hotelID_roomID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FE_Get_Service_by_HotelID">
+      <soap12:operation soapAction="http://tempuri.org/FE_Get_Service_by_HotelID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FE_GetHistoryOrderOfRoom">
+      <soap12:operation soapAction="http://tempuri.org/FE_GetHistoryOrderOfRoom" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FE_Get_hotline">
+      <soap12:operation soapAction="http://tempuri.org/FE_Get_hotline" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FE_Payment">
+      <soap12:operation soapAction="http://tempuri.org/FE_Payment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FE_SendComment">
+      <soap12:operation soapAction="http://tempuri.org/FE_SendComment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BE_FindUserByUsername_Password">
+      <soap12:operation soapAction="http://tempuri.org/BE_FindUserByUsername_Password" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BE_GetHotelByID">
+      <soap12:operation soapAction="http://tempuri.org/BE_GetHotelByID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BE_EditHotel">
+      <soap12:operation soapAction="http://tempuri.org/BE_EditHotel" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BE_GetListHotel">
+      <soap12:operation soapAction="http://tempuri.org/BE_GetListHotel" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BE_DeleteHotel">
+      <soap12:operation soapAction="http://tempuri.org/BE_DeleteHotel" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BE_GetServiceByIdHotel">
+      <soap12:operation soapAction="http://tempuri.org/BE_GetServiceByIdHotel" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BE_AddHotel">
+      <soap12:operation soapAction="http://tempuri.org/BE_AddHotel" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BE_GetListHotelRoom">
+      <soap12:operation soapAction="http://tempuri.org/BE_GetListHotelRoom" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BE_EditHotelRoom">
+      <soap12:operation soapAction="http://tempuri.org/BE_EditHotelRoom" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BE_DeleteHotelRoom">
+      <soap12:operation soapAction="http://tempuri.org/BE_DeleteHotelRoom" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BE_AddHotelRoom">
+      <soap12:operation soapAction="http://tempuri.org/BE_AddHotelRoom" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListBooking_BE">
+      <soap12:operation soapAction="http://tempuri.org/GetListBooking_BE" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConfirmHotelBooking_BE">
+      <soap12:operation soapAction="http://tempuri.org/ConfirmHotelBooking_BE" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteHotelBooking_BE">
+      <soap12:operation soapAction="http://tempuri.org/DeleteHotelBooking_BE" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetListHotel_BE">
+      <soap12:operation soapAction="http://tempuri.org/GetListHotel_BE" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddHotel_BE">
+      <soap12:operation soapAction="http://tempuri.org/AddHotel_BE" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditHotel_BE">
+      <soap12:operation soapAction="http://tempuri.org/EditHotel_BE" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteHotel_BE">
+      <soap12:operation soapAction="http://tempuri.org/DeleteHotel_BE" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Server">
+    <wsdl:port name="ServerSoap" binding="tns:ServerSoap">
+      <soap:address location="https://localhost:44367/Server.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ServerSoap12" binding="tns:ServerSoap12">
+      <soap12:address location="https://localhost:44367/Server.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
