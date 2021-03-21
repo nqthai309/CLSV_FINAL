@@ -703,6 +703,16 @@ namespace Server3
             context.SaveChanges();
             return "1";
         }
+        [WebMethod]
+        public string BE_GetCommentStatistical()
+        {
+            var result = from cmt in context.comments
+                         select new
+                         {
+                             cmt.comment_id, cmt.hotel_id, cmt.user_id, cmt.content, cmt.time_comment, cmt.hotels.hotel_name, cmt.users.username
+                         };
+            return JsonConvert.SerializeObject(result);
+        }
 
 
 

@@ -3,6 +3,11 @@
     ViewBag.Title = "CommentStatistical";
     Layout = "~/Areas/Backend/Views/Shared/Backend.cshtml";
 }
+@using CNW_N8_MVC.Class;
+@{ var cmt_list = ViewData["listCmt"] as IEnumerable<BE_CommentStatistical>;}
+@{ var list_search = ViewData["listSearch"] as IEnumerable<BE_CommentStatistical>;}
+@{ var f_date = ViewData["f_date"] as String;}
+@{ var t_date = ViewData["t_date"] as String;}
 
 <div class="row">
     <div class="col-lg-12">
@@ -10,10 +15,14 @@
             <div class="card-header"><i class="fa fa-align-justify"></i> Danh sách Bình Luận</div>
             <div class="card-body">
                 <label>Chọn ngày : </label>
-                <input type="date" id="from_date" name="from_date" />
-                <input type="date" id="to_date" name="to_date" />
-                <button id="btnThem" class="btn btn-sm btn-primary" type="submit"> Submit</button>
-                <button id="btnExport" class="btn btn-sm btn-primary" type="submit"> Export</button>
+                <form method="get" action="/BackendStatistical/SearchComment">
+                    <input type="date" id="from_date" name="from_date" value="@f_date"/>
+                    <input type="date" id="to_date" name="to_date" value="@t_date"/>
+                    <button id="btnSubmit" class="btn btn-sm btn-primary" type="submit"> Submit</button>
+                </form>
+                <form method="get" action="/BackendStatistical/Export">
+                    <button id="btnExport" class="btn btn-sm btn-primary" type="submit"> Export</button>
+                </form>
                 <table class="table table-responsive-sm">
                     <thead>
                         <tr>
@@ -27,15 +36,34 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @for (int i = 0; i < 3; i++)
+                        @if (list_search.Count() == 0)
                         {
-                            <tr>
-                                <td>Khách Sạn 123zo</td>
-                                <td>admin</td>
-                                <td>Khách Sạn đẹp quá</td>
-                                <td>2020/03/20</td>
-                            </tr>
+                            foreach (var it in cmt_list)
+                            {
+                                <tr>
+                                    <td>@it.Hotel_name</td>
+                                    <td>@it.Username</td>
+                                    <td>@it.Content</td>
+                                    <td>@it.Time_comment.Split('T')[0]</td>
+                                </tr>
+                            }
+
+
+
                         }
+                        else
+                        {
+                            foreach (var it in list_search)
+                            {
+                                <tr>
+                                    <td>@it.Hotel_name</td>
+                                    <td>@it.Username</td>
+                                    <td>@it.Content</td>
+                                    <td>@it.Time_comment.Split('T')[0]</td>
+                                </tr>
+                            }
+                        }
+
                     </tbody>
                 </table>
             </div>
