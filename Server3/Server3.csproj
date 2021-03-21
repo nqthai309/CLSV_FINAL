@@ -156,6 +156,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class\BE_TotalPriceByUser.cs" />
     <Compile Include="Class\CartItem.cs" />
     <Compile Include="Class\CommentChild.cs" />
     <Compile Include="Class\CommentRoot.cs" />
