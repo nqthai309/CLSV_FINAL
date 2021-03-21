@@ -155,310 +155,67 @@
                             </div>
                             <div class="sidebar">
 
-                            <div class="form-row">
-                                <div class="col-sm-12">
-                                    <div class="form-group">
-                                        @foreach (ItemService it in serviceList)
-                                        {
-                                    <div class="form-row" style="display:flex; justify-content:center; align-items:center; margin-top:20px">
-                                        <img src="@it.Service_image" style="width:30px; height:30px" />
-                                        <b style="font-size:12px; margin-left:10px">@it.Service_name</b>
-                                        @if (serviceSelect.Contains(it.Service_id.ToString()))
-                                        {
-                                            <input id="service+@it.Service_id" name="service+@it.Service_id" style="margin-left:70px" type="checkbox" checked="checked" />
-                                        }
-                                        else
-                                        {
-                                            <input id="service+@it.Service_id" name="service+@it.Service_id" style="margin-left:70px" type="checkbox" />
-                                        }
-                                        
-                                    </div>
-                                        }
-
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                            @*<div class="sidebar">
-
                                 <div class="form-row">
                                     <div class="col-sm-12">
                                         <div class="form-group">
                                             @foreach (ItemService it in serviceList)
                                             {
                                                 <div class="form-row" style="display:flex; margin-top:20px">
-                                                    @if (it.Service_id == 1)
+                                                    @if (serviceSelect.Contains(it.Service_id.ToString()))
                                                     {
-                                                        <div class="col-sm-12">
-                                                            @if (serviceSelect.Contains(it.Service_id.ToString()))
-                                                            {
-                                                                <p style="margin-left:15px;"><input checked="checked" type="checkbox" id="" name="convenient+@it.Service_id" style="margin-left:20px; align-content:center; font-family" /> <i class="fas fa-utensils"></i>   @it.Service_name</p>
-                                                            }
-                                                            else
-                                                            {
-                                                                <p style="margin-left:15px;"><input type="checkbox" id="" name="convenient+@it.Service_id" style="margin-left:20px; align-content:center; font-family" /> <i class="fas fa-utensils"></i>   @it.Service_name</p>
-                                                            }
-                                                        </div>
+                                                        <input id="service+@it.Service_id" name="service+@it.Service_id" type="checkbox" checked="checked" />
                                                     }
-                                                    @if (it.Service_id == 2)
+                                                    else
                                                     {
-                                                        <div class="col-sm-12">
-                                                            @if (serviceSelect.Contains(it.Service_id.ToString()))
-                                                            {
-                                                                <p style="margin-left:15px;"><input checked="checked" type="checkbox" id="" name="convenient+@it.Service_id" style="margin-left:20px; align-content:center; font-family" /> <i class="fas fa-cocktail"></i>   @it.Service_name</p>
-                                                            }
-                                                            else
-                                                            {
-                                                                <p style="margin-left:15px;"><input type="checkbox" id="" name="convenient+@it.Service_id" style="margin-left:20px; align-content:center; font-family" /> <i class="fas fa-cocktail"></i>   @it.Service_name</p>
-                                                            }
-                                                        </div>
+                                                        <input id="service+@it.Service_id" name="service+@it.Service_id" type="checkbox" />
                                                     }
-                                                    @if (it.Service_id == 3)
-                                                    {
-                                                        <div class="col-sm-12">
-                                                            @if (serviceSelect.Contains(it.Service_id.ToString()))
-                                                            {
-                                                                <p style="margin-left:15px;"><input checked="checked" type="checkbox" id="" name="convenient+@it.Service_id" style="margin-left:20px; align-content:center; font-family" /> <i class="fas fa-hot-tub"></i>   @it.Service_name</p>
-                                                            }
-                                                            else
-                                                            {
-                                                                <p style="margin-left:15px;"><input type="checkbox" id="" name="convenient+@it.Service_id" style="margin-left:20px; align-content:center; font-family" /> <i class="fas fa-hot-tub"></i>   @it.Service_name</p>
-                                                            }
-                                                        </div>
-                                                    }
-                                                    @if (it.Service_id == 4)
-                                                    {
-                                                        <div class="col-sm-12">
-                                                            @if (serviceSelect.Contains(it.Service_id.ToString()))
-                                                            {
-                                                                <p style="margin-left:15px;"><input type="checkbox" id="" name="convenient+@it.Service_id" style="margin-left:20px; align-content:center; font-family" /> <i class="fas fa-coffee"></i>   @it.Service_name</p>
-                                                            }
-                                                            else
-                                                            {
-                                                                <p style="margin-left:15px;"><input type="checkbox" id="" name="convenient+@it.Service_id" style="margin-left:20px; align-content:center; font-family" /> <i class="fas fa-coffee"></i>   @it.Service_name</p>
-                                                            }
-                                                        </div>
-                                                    }
-                                                    @if (it.Service_id == 5)
-                                                    {
-                                                        <div class="col-sm-12">
-                                                            @if (serviceSelect.Contains(it.Service_id.ToString()))
-                                                            {
-                                                                <p style="margin-left:15px;"><input checked="checked" type="checkbox" id="" name="convenient+@it.Service_id" style="margin-left:20px; align-content:center; font-family" /> <i class="fas fa-swimming-pool"></i>   @it.Service_name</p>
-                                                            }
-                                                            else
-                                                            {
-                                                                <p style="margin-left:15px;"><input type="checkbox" id="" name="convenient+@it.Service_id" style="margin-left:20px; align-content:center; font-family" /> <i class="fas fa-swimming-pool"></i>   @it.Service_name</p>
-                                                            }
-                                                        </div>
-                                                    }
-                                                    @if (it.Service_id == 6)
-                                                    {
-                                                        <div class="col-sm-12">
-                                                            @if (serviceSelect.Contains(it.Service_id.ToString()))
-                                                            {
-                                                                <p style="margin-left:15px;"><input checked="checked" type="checkbox" id="" name="convenient+@it.Service_id" style="margin-left:20px; align-content:center; font-family" /> <i class="fas fa-dumbbell"></i>   @it.Service_name</p>
-                                                            }
-                                                            else
-                                                            {
-                                                                <p style="margin-left:15px;"><input type="checkbox" id="" name="convenient+@it.Service_id" style="margin-left:20px; align-content:center; font-family" /> <i class="fas fa-dumbbell"></i>   @it.Service_name</p>
-                                                            }
-                                                        </div>
-                                                    }
+                                                    <img src="@it.Service_image" style="width:30px; height:30px; margin-left:10px" />
+                                                    <b style="font-size:12px; margin-left:10px">@it.Service_name</b>
                                                 </div>
                                             }
-
                                         </div>
                                     </div>
                                 </div>
 
-                            </div>*@
-
-
+                            </div>
                             <div class="row">
                                 <div class="col-sm-5">
                                     <p style="font-size:18px; margin-top:10px">Tiện Nghi</p>
                                 </div>
                             </div>
                             <div class="sidebar">
-
-                            <div class="form-row">
-                                <div class="col-sm-12">
-                                    <div class="form-group">
-                                        @foreach (ItemConvenient it in convenientList)
-                                        {
-                                    <div class="form-row" style="display:flex; justify-content:center; align-items:center; margin-top:20px">
-                                        <img src="@it.Convenient_image" style="width:25px; height:25px" />
-                                        <b style="margin-left:15px; font-size:14px">@it.Convenient_name</b>
-                                        @if (convenientSelect.Contains(it.Convenient_id.ToString()))
-                                        {
-                                            <input type="checkbox" id="convenient+@it.Convenient_id" name="convenient+@it.Convenient_id" checked="checked" style="margin-left:20px; align-content:center; font-family" />
-                                        }
-                                        else
-                                        {
-                                            <input type="checkbox" id="convenient+@it.Convenient_id" name="convenient+@it.Convenient_id" style="margin-left:20px; align-content:center; font-family" />
-                                        }
-                                        
-                                    </div>
-                                        }
-
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                            @*<div class="sidebar">
-
                                 <div class="form-row">
                                     <div class="col-sm-12">
                                         <div class="form-group">
                                             @foreach (ItemConvenient it in convenientList)
                                             {
                                                 <div class="form-row" style="display:flex; margin-top:20px">
-                                                    @if (it.Convenient_id == 1)
+                                                    @if (convenientSelect.Contains(it.Convenient_id.ToString()))
                                                     {
-                                                        <div class="col-sm-12">
-                                                            @if (convenientSelect.Contains(it.Convenient_id.ToString()))
-                                                            {
-                                                                <p>  <input type="checkbox" checked="checked" id="convenient+@it.Convenient_id" name="convenient+@it.Convenient_id" style="margin-left:20px; align-content:center; font-family" /> <i class="fas fa-cocktail"></i>   @it.Convenient_name</p>
-                                                            }
-                                                            else
-                                                            {
-                                                                <p>  <input type="checkbox" id="convenient+@it.Convenient_id" name="convenient+@it.Convenient_id" style="margin-left:20px; align-content:center; font-family" /> <i class="fas fa-cocktail"> </i>   @it.Convenient_name</p>
-                                                            }
-                                                        </div>
+                                                        <input type="checkbox" id="convenient+@it.Convenient_id" name="convenient+@it.Convenient_id" checked="checked" style="font-family" />
                                                     }
-                                                    @if (it.Convenient_id == 2)
+                                                    else
                                                     {
-                                                        <div class="col-sm-12">
-                                                            @if (convenientSelect.Contains(it.Convenient_id.ToString()))
-                                                            {
-                                                                <p>  <input type="checkbox" checked="checked" id="convenient+@it.Convenient_id" name="convenient+@it.Convenient_id" style="margin-left:20px; align-content:center; font-family" /> <i class="fas fa-tv"></i>  @it.Convenient_name</p>
-                                                            }
-                                                            else
-                                                            {
-                                                                <p>  <input type="checkbox" id="convenient+@it.Convenient_id" name="convenient+@it.Convenient_id" style="margin-left:20px; align-content:center; font-family" /> <i class="fas fa-tv"></i>   @it.Convenient_name</p>
-                                                            }
-                                                        </div>
+                                                        <input type="checkbox" id="convenient+@it.Convenient_id" name="convenient+@it.Convenient_id" style="font-family" />
                                                     }
-                                                    @if (it.Convenient_id == 3)
-                                                    {
-                                                        <div class="col-sm-12">
-                                                            @if (convenientSelect.Contains(it.Convenient_id.ToString()))
-                                                            {
-                                                                <p>  <input type="checkbox" checked="checked" id="convenient+@it.Convenient_id" name="convenient+@it.Convenient_id" style="margin-left:20px; align-content:center; font-family" /> <i class="fas fa-bath"></i> @it.Convenient_name</p>
-                                                            }
-                                                            else
-                                                            {
-                                                                <p>  <input type="checkbox" id="convenient+@it.Convenient_id" name="convenient+@it.Convenient_id" style="margin-left:20px; align-content:center; font-family" /> <i class="fas fa-bath"></i>  @it.Convenient_name</p>
-                                                            }
-                                                        </div>
-                                                    }
-                                                    @if (it.Convenient_id == 4)
-                                                    {
-                                                        <div class="col-sm-12">
-                                                            @if (convenientSelect.Contains(it.Convenient_id.ToString()))
-                                                            {
-                                                                <p>  <input type="checkbox" checked="checked" id="convenient+@it.Convenient_id" name="convenient+@it.Convenient_id" style="margin-left:20px; align-content:center; font-family" /> <i class="fas fa-bed"></i> @it.Convenient_name</p>
-                                                            }
-                                                            else
-                                                            {
-                                                                <p>  <input type="checkbox" id="convenient+@it.Convenient_id" name="convenient+@it.Convenient_id" style="margin-left:20px; align-content:center; font-family" /> <i class="fas fa-bed"></i>  @it.Convenient_name</p>
-                                                            }
-                                                        </div>
-                                                    }
-                                                    @if (it.Convenient_id == 5)
-                                                    {
-                                                        <div class="col-sm-12">
-                                                            @if (convenientSelect.Contains(it.Convenient_id.ToString()))
-                                                            {
-                                                                <p>  <input type="checkbox" checked="checked" id="convenient+@it.Convenient_id" name="convenient+@it.Convenient_id" style="margin-left:20px; align-content:center; font-family" /> <i class="fas fa-swimming-pool"></i> @it.Convenient_name</p>
-                                                            }
-                                                            else
-                                                            {
-                                                                <p>  <input type="checkbox" id="convenient+@it.Convenient_id" name="convenient+@it.Convenient_id" style="margin-left:20px; align-content:center; font-family" /> <i class="fas fa-swimming-pool"></i>  @it.Convenient_name</p>
-                                                            }
-                                                        </div>
-                                                    }
-                                                    @if (it.Convenient_id == 6)
-                                                    {
-                                                        <div class="col-sm-12">
-                                                            @if (convenientSelect.Contains(it.Convenient_id.ToString()))
-                                                            {
-                                                                <p>  <input type="checkbox" checked="checked" id="convenient+@it.Convenient_id" name="convenient+@it.Convenient_id" style="margin-left:20px; align-content:center; font-family" /> <i class="fas fa-utensils"></i> @it.Convenient_name</p>
-                                                            }
-                                                            else
-                                                            {
-                                                                <p>  <input type="checkbox" id="convenient+@it.Convenient_id" name="convenient+@it.Convenient_id" style="margin-left:20px; align-content:center; font-family" /> <i class="fas fa-utensils"></i>  @it.Convenient_name</p>
-                                                            }
-                                                        </div>
-                                                    }
+                                                    <img src="@it.Convenient_image" style="width:25px; height:25px; margin-left:10px" />
+                                                    <b style="margin-left:15px; font-size:14px">@it.Convenient_name</b>
                                                 </div>
                                             }
+
                                         </div>
                                     </div>
                                 </div>
 
-                            </div>*@
+                            </div>
 
                         </div>
                         </form>
                         <div class="col-sm-9">
                             <div class="row pb-3">
-                            @foreach (ItemHotel it in htList)
-                            {
-                                <div class="col-sm-4" style="margin-top:20px;">
-                                    <div class="soutchai-item block-item" style="height:400px">
-                                        <a href="@Url.Action("ListRoom", "Hotel2", new { @hotel_id = it.HotelID })">
-                                            <div class="soutchai-item-img">
-                                                <img src="@it.Image_url" style="width:270px; height:150px" />
-                                                <div class="top-left">
-                                                    <i class="fas fa-map-marker-alt fs13"></i>
-                                                    <span class="t_white">@it.Address</span>
-                                                </div>
-                                            </div>
-                                            <ul class="">
-                                                <li class="position-relative">
-                                                    <p style="font-size:17px" class="title">@it.HotelName</p>
-                                                </li>
-                                                <li class="position-relative" style="margin-top:5px">
-                                                    @for (int star1 = 0; star1 < it.Star; star1++)
-                                                    {
-                                                        <img src="~/image/unnamed.jpg" style="width:30px; height:30px" />
-                                                    }
-                                                </li>
-                                                <p class="fs12 text-grey">
-
-                                                <p style="font-size:13px; margin-top:6px">@it.Description</p>
-                                                </p>
-                                                <li class="price pt-2">
-                                                    <p class="fs12 text-grey">
-                                                    <p>
-
-                                                        <span class="latest_price color-main"><b>@it.MinPrice - @it.MaxPrice đ/ngày</b></span>
-                                                    </p>
-
-                                                    <i style="margin-top:25px; font-size:13px">
-                                                        @it.AddressDetail
-                                                    </i>
-                                                    <p class="fs12 text-grey">
-                                                    <p style="font-size:13px; margin-top:6px">Bình Luận (@it.TotalComment)</p>
-                                                    </p>
-
-                                                    </p>
-                                                </li>
-                                            </ul>
-                                        </a>
-                                    </div>
-                                </div>
-                            }
-
-                        </div>
-                            @*<div class="row pb-3">
                                 @foreach (ItemHotel it in htList)
                                 {
-                                    <div class="col-sm-4 mt-4">
+                                    <div class="col-sm-4">
                                         <div class="soutchai-item" style="height: 250px">
                                             <div class="m_justify_list m_radius_box act_card act_card_sm a_sd_move j_activity_item js-item block-item">
                                                 <a href="@Url.Action("ListRoom", "Hotel2", new { @hotel_id = it.HotelID })">
@@ -476,7 +233,7 @@
                                                         <li class="position-relative" style="margin-top:5px">
                                                             <p style="font-size: 12px">
                                                                 Đánh giá:
-                                                                @for (int star1 = 0; star1 < it.Star; star1++)
+                                                                @for (int star2 = 0; star2 < it.Star; star2++)
                                                                 {
                                                                     <i class="fas fa-star" style="color:yellow"></i>
                                                                 }
@@ -494,7 +251,47 @@
                                     </div>
                                 }
 
-                            </div>*@
+                            </div>
+                            @*<div class="row pb-3">
+                                    @foreach (ItemHotel it in htList)
+                                    {
+                                        <div class="col-sm-4 mt-4">
+                                            <div class="soutchai-item" style="height: 250px">
+                                                <div class="m_justify_list m_radius_box act_card act_card_sm a_sd_move j_activity_item js-item block-item">
+                                                    <a href="@Url.Action("ListRoom", "Hotel2", new { @hotel_id = it.HotelID })">
+                                                        <div class="soutchai-item-img">
+                                                            <img src="@it.Image_url" style="width:270px; height:150px" />
+                                                            <div class="top-left">
+                                                                <i class="fas fa-map-marker-alt fs13"></i>
+                                                                <span class="t_white">@it.Address</span>
+                                                            </div>
+                                                        </div>
+                                                        <ul class="">
+                                                            <li class="position-relative">
+                                                                <p class="title" style="font-size:15px">@it.HotelName</p>
+                                                            </li>
+                                                            <li class="position-relative" style="margin-top:5px">
+                                                                <p style="font-size: 12px">
+                                                                    Đánh giá:
+                                                                    @for (int star1 = 0; star1 < it.Star; star1++)
+                                                                    {
+                                                                        <i class="fas fa-star" style="color:yellow"></i>
+                                                                    }
+                                                                </p>
+                                                            </li>
+                                                            <li class="price pt-2">
+                                                                <p>
+                                                                    <span class="latest_price color-main"><b>@it.MinPrice - @it.MaxPrice đ/ngày</b></span>
+                                                                </p>
+                                                            </li>
+                                                        </ul>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+
+                                </div>*@
 
                             <div class="sc-pagination pb-5">
                                 Trang @(htList.PageCount < htList.PageNumber ? 0 : htList.PageNumber) / @htList.PageCount

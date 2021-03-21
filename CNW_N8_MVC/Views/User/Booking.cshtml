@@ -44,36 +44,54 @@
                 <div class="col-md-9">
                     <div class="user-main-box bg-white">
                         <p>Danh sách Giỏ Hàng</p>
+                        <div class="p-3">
+                            <div class="box-white mb30 p15">
+                                <div class="filter-header mb15">
+                                    <div class="row vertical-center pt-3 pb-3 panel-border-grey panel-bg-red">
+                                        <div class="col">
+                                            <p style="font-size:12px" class=" semi-bold">Tên khách sạn</p>
+                                        </div>
+                                        <div class="col text-center">
+                                            <p style="font-size:12px" class=" semi-bold">Mã phòng</p>
+                                        </div>
+                                        <div class="col text-center">
+                                            <p style="font-size:12px" class=" semi-bold">Ngày đến</p>
+                                        </div>
+                                        <div class="col text-center">
+                                            <p style="font-size:12px" class=" semi-bold">Ngày về</p>
+                                        </div>
+                                        <div class="col text-center">
+                                            <p style="font-size:12px" class=" semi-bold">D.vụ</p>
+                                        </div>
+                                        <div class="col text-center">
+                                            <p style="font-size:12px" class=" semi-bold">Tổng tiền</p>
+                                        </div>
+                                        <div class="col text-center">
 
-                        <table style="width:100%; border: 1px solid black; border-collapse: collapse;">
-                            <caption><input readonly name="totalBookingPrice" style="width:450px" value="Tổng tiền của hoá đơn=@Model.lines.Sum(l => l.Product.TotalPrice)"></input></caption>
-                            <hr />
-                            <caption>Lưu ý: tổng tiền của hoá đơn đã được giảm giá với giá trị mà tài khoản này hiện có (Chi tiết xem tại mục ưu đãi ở phần thông tin tài khoản)</caption>
-                            <tr>
-                                <th style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">Tên khách sạn</th>
-                                <th style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">Địa chỉ</th>
-                                <th style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">Mã phòng</th>
-                                <th style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">Ngày đến</th>
-                                <th style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">Ngày về</th>
-                                <th style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">D.vụ</th>
-                                <th style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">Tổng tiền</th>
-                                <th style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center"></th>
-                            </tr>
-                            @foreach (var it in Model.lines)
-                            {
-                                <tr>
-                                    <td style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">@it.Product.HotelName</td>
-                                    <td style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">@it.Product.AddressDetail</td>
-                                    <td style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">@it.Product.Hotel_rooms_id</td>
-                                    <td style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">@it.Product.From_date</td>
-                                    <td style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">@it.Product.To_date</td>
-                                    <td style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">@it.Product.Service_list</td>
-                                    <td style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">@it.Product.TotalPrice</td>
-                                    <td><a href="@Url.Action("RemoveLine", "User", new {hotel_id = it.Product.Hotel_id, hotel_rooms_id = it.Product.Hotel_rooms_id, from_date = it.Product.From_date})" style=" background-color: #f44336; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer;">Xoá</a></td>
-                                </tr>
-                            }
-                        </table>
-
+                                        </div>
+                                        <div class="clear-fix"></div>
+                                    </div>
+                                    <div id="list_bookings" class="accordion filter-accordion">
+                                        <div class="panel" data-room-id="booking1">
+                                            @foreach (var it in Model.lines)
+                                            {
+                                                <div class="giohang row pt-3 pb-3 panel-row panel-border-grey">
+                                                    <div style="font-size:12px" class="col">@it.Product.HotelName</div>
+                                                    <div style="font-size:12px" class="col text-center">@it.Product.Hotel_rooms_id</div>
+                                                    <div style="font-size:12px" class="col text-center">@it.Product.From_date</div>
+                                                    <div style="font-size:12px" class="col text-center">@it.Product.To_date</div>
+                                                    <div style="font-size:12px" class="col text-center">@it.Product.Service_list</div>
+                                                    <div style="font-size:12px" class="col text-center">@it.Product.TotalPrice</div>
+                                                    <a href="@Url.Action("RemoveLine", "User", new {hotel_id = it.Product.Hotel_id, hotel_rooms_id = it.Product.Hotel_rooms_id, from_date = it.Product.From_date})" style=" color: #f44336; border: none; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer;">Xoá</a>
+                                                    <div class="clear-fix"></div>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                    <p style="text-align:right;color: #f44336"><input style="text-decoration: none;border:none;color: #f44336" readonly name="totalBookingPrice" value="Tổng tiền của hoá đơn=@Model.lines.Sum(l => l.Product.TotalPrice)"></input></p>
+                                </div>
+                            </div>
+                        </div>
                         <div id="divThongBao"></div>
                         @if (Model.lines.Count() == 0)
                         {
@@ -81,27 +99,34 @@
                         }
                         else
                         {
-                            <div style="display:flex; flex-direction:row; border-color:black; border-width:2px;">
-                                <div style="display: flex; flex-direction: column; align-items:center; margin:20px">
-                                    <img src="~/image/logo-momo.png" style="width:60px; height:60px" />
-                                    <button type="submit">Thanh toán qua MOMO</button>
-                                </div>
-                                <div style="display: flex; flex-direction: column; align-items:center; margin:20px">
-                                    <img src="~/image/vnpay.png" style="width:100px; height:60px" />
-                                    <button type="submit">Thanh toán qua VNPAY</button>
-                                </div>
-                                <div style="display: flex; flex-direction: column; align-items:center; margin:20px">
-                                    <img src="~/image/money.png" style="width:60px; height:60px" />
-                                    <button type="submit">Thanh toán tiền mặt</button>
-                                </div>
-                            </div>
+                            <button style="border:2px; background-color:royalblue; color:white; font-size:20px; border-radius:8px" id="btnThanhToan">Thanh Toán</button>
                         }
 
-
                     </div>
-                    <div class="mt-3">
+                    <div id="divThongBao"></div>
+                    @if (Model.lines.Count() == 0)
+                    {
 
-                    </div>
+                    }
+                    else
+                    {
+                        <div style="display:flex; flex-direction:row; border-color:black; border-width:2px;">
+                            <div style="display: flex; flex-direction: column; align-items:center; margin:20px">
+                                <img src="~/image/logo-momo.png" style="width:60px; height:60px" />
+                            </div>
+                            <div style="display: flex; flex-direction: column; align-items:center; margin:20px">
+                                <img src="~/image/vnpay.png" style="width:140px; height:60px" />
+                            </div>
+                            <div style="display: flex; flex-direction: column; align-items:center; margin:20px">
+                                <img src="~/image/money.png" style="width:60px; height:60px" />
+                            </div>
+                        </div>
+                    }
+
+
+                </div>
+                <div class="mt-3">
+
                 </div>
             </div>
         </div>

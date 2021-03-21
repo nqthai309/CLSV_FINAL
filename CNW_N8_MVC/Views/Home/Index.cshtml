@@ -49,7 +49,7 @@
                     else
                     {
                         <div class="col-sm-3">
-                            <div class="soutchai-item" style="height:400px">
+                            <div class="soutchai-item" style="height: 250px">
                                 <div class="m_justify_list m_radius_box act_card act_card_sm a_sd_move j_activity_item js-item block-item">
                                     <a href="@Url.Action("ListRoom", "Hotel2", new { @hotel_id = it.HotelID })">
                                         <div class="soutchai-item-img">
@@ -61,27 +61,21 @@
                                         </div>
                                         <ul class="">
                                             <li class="position-relative">
-                                                <b class="title">@it.HotelName</b>
+                                                <p class="title" style="font-size:15px">@it.HotelName</p>
                                             </li>
                                             <li class="position-relative" style="margin-top:5px">
-                                                @for (int star = 0; star < it.Star; star++)
-                                                {
-                                                    <img src="~/image/unnamed.jpg" style="width:30px; height:30px" />
-                                                }
+                                                <p style="font-size: 12px">
+                                                    Đánh giá:
+                                                    @for (int star = 0; star < it.Star; star++)
+                                                    {
+                                                        <i class="fas fa-star" style="color:yellow"></i>
+                                                    }
+                                                </p>
                                             </li>
-                                            <p class="fs12 text-grey">
-
-                                            <p style="font-size:13px; margin-top:6px">@it.Description</p>
-                                            </p>
                                             <li class="price pt-2">
                                                 <p>
                                                     <span class="latest_price color-main"><b>@it.MinPrice - @it.MaxPrice đ/ngày</b></span>
                                                 </p>
-                                                <i style="margin-top:25px; font-size:13px">
-                                                    @it.AddressDetail
-                                                </i>
-                                                <p class="fs12 text-grey">
-                                                <p style="font-size:13px; margin-top:6px">Bình Luận (@it.TotalComment)</p>
                                             </li>
                                         </ul>
                                     </a>

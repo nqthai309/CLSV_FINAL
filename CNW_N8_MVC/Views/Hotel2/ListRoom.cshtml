@@ -18,246 +18,177 @@
 @{ var idAccount = ViewData["idAccount"] as String;}
 @{ var message = ViewData["message"] as String;}
 
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
-
-<section onload="alertMessage()" class="main-content bg-white">
-    <div class="reason-top" >
-        <div class="reason-top-opacity">
-            <div class="container">
-                <div class="reason-top-text">
-                    <b class="fs32 text-white text-capitalize">@hotel_current.HotelName</b>
-                    <li class="position-relative" style="margin-top:5px">
-                        @for (int star = 0; star < hotel_current.Star; star++)
-                        {
-                            <img src="~/image/unnamed.jpg" style="width:30px; height:30px" />
-                        }
-
-                    </li>
-                    <b style="margin-top:25px; font-size:13px; color:white">
-                        @hotel_current.AddressDetail
-                    </b>
+<section onload="alertMessage()" class="main-content">
+    <div style="background-color:#ebebeb;padding:50px">
+        <div class="container" style="background-color: white;">
+            <div class="row" id="main-content">
+                <div class="col-sm-12" id="content" style="border-bottom:1px solid #dadada;">
+                    <div class="hotel-information" style="padding:10px">
+                        <div class="">
+                            <h1 class="color-main semi-bold" style="-webkit-box-flex: 1; -ms-flex: 1; flex: 1; font-size: 24px; font-weight: 700; color: #434343; margin-bottom: 6px;">@hotel_current.HotelName</h1>
+                        </div>
+                        <div>
+                            <span style="display: inline-block; padding: 3px 16px; font-size: 12px; font-weight: 500; color: #fff; line-height: 14px; border-radius: 10px; background-color: #EC3737; margin-right: 8px; text-transform: uppercase;">Khách sạn</span>
+                            @for (int i = 0; i < hotel_current.Star; i++)
+                            {
+                                <i class="fas fa-star" style="color:rgb(255, 196, 18)"></i>
+                            }
+                        </div>
+                        <div class="mt-2">
+                            <p class="fs14" style="font-size: 14px; color: #434343"><i class="fas fa-map-marker-alt"></i> Địa chỉ: @hotel_current.AddressDetail</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12" style="margin-top:20px">
+                    <div class="w3-content" style="max-width:1200px;border-bottom:1px solid #dadada">
+                        <img class="mySlides" src="@hotel_current.Detail_header_image_url" style="width:100%;max-height:350px;display: block">
+                    </div>
+                    <div class="row pt-2 mt-3 pb-3" style="border-bottom: 1px solid #dadada;border-top: 1px solid #dadada ">
+                        <div class="col-sm-6" style="text-align:left">
+                            <p class="color-main semi-bold" style="-webkit-box-flex: 1; -ms-flex: 1; flex: 1; font-size: 16px; font-weight: 700; color: #434343; margin-bottom: 6px;">@hotel_current.HotelName</p>
+                            @for (int i = 0; i < hotel_current.Star; i++)
+                            {
+                                <i class="fas fa-star" style="color:rgb(255, 196, 18)"></i>
+                            }
+                            <p class="fs14">Đánh giá từ 45 khách hàng</p>
+                        </div>
+                        <div class="col-sm-6" style="text-align:right">
+                            <p class="fs14">Giá phòng mỗi đêm từ </p>
+                            <p style="font-size: 20px; line-height: 1.17; color: #F96D01; font-weight: 700;"> @hotel_current.MinPrice - @hotel_current.MaxPrice VNĐ</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="accommodation-header">
-            <div class="accommodation-filter mt-4 position-relative">
-                <div class="location-object-result">
-                    <div class="mt-3 mb-3 box-filter">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <form method="get" action="/Hotel2/SearchEngine_Room">
-                                    <div class="form-row">
-                                        <div class="form-group col-3">
-                                            <select class="form-control sc-input" name="priceSelect" id="exampleFormControlSelect1">
-                                                @*@foreach (var it in optionList)
-                                                    {
-                                                        if (locationSelect == it.location_name)
+            <div class="accommodation-header">
+                <div class="accommodation-filter mt-2 position-relative">
+                    <div class="location-object-result">
+                        <div class="mt-3 mb-3 box-filter">
+                            <h4 style="font-size: 16px; font-weight: 700; line-height: 1.25; color: #434343;">Tìm kiếm nhanh hơn bằng cách chọn những thông tin bạn cần</h4>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <form method="get" action="/Hotel2/SearchEngine_Room">
+                                        <div class="form-group mt-2">
+                                            <div class="row">
+                                                @foreach (var it in convenientList)
+                                                {
+                                                    <div class="col mt-3 mb-3" style="text-align:center">
+                                                        <p><img src="@it.Convenient_image" style="width:25px; height:25px" /></p>
+                                                        <b style="margin-left:15px;">@it.Convenient_name</b>
+                                                        @if (convenientSelect.Contains(it.Convenient_id.ToString()))
                                                         {
-                                                            <option selected="selected">@it.location_name</option>
+                                                            <input type="checkbox" id="" name="convenient+@it.Convenient_id" checked="checked" style="margin-left:10px; align-content:center; font-family" />
                                                         }
                                                         else
                                                         {
-                                                            <option>@it.location_name</option>
+                                                            <input type="checkbox" id="" name="convenient+@it.Convenient_id" style="margin-left:10px; align-content:center; font-family" />
                                                         }
-
-                                                    }*@
-                                                @if (priceSelect != null)
-                                                {
-                                                    if (priceSelect == "1")
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-3">
+                                                <select class="form-control sc-input" name="priceSelect" id="exampleFormControlSelect1">
+                                                    @if (priceSelect != null)
                                                     {
-                                                        <option value="1" selected="selected">Giá thấp đến cao</option>
-                                                        <option value="0">Giá cao đến thấp</option>
+                                                        if (priceSelect == "1")
+                                                        {
+                                                            <option value="1" selected="selected">Giá thấp đến cao</option>
+                                                            <option value="0">Giá cao đến thấp</option>
+                                                        }
+                                                        else if (priceSelect == "0")
+                                                        {
+                                                            <option value="1">Giá thấp đến cao</option>
+                                                            <option value="0" selected="selected">Giá cao đến thấp</option>
+                                                        }
                                                     }
-                                                    else if (priceSelect == "0")
+                                                    else
                                                     {
                                                         <option value="1">Giá thấp đến cao</option>
-                                                        <option value="0" selected="selected">Giá cao đến thấp</option>
+                                                        <option value="0">Giá cao đến thấp</option>
                                                     }
-                                                }
-                                                else
-                                                {
-                                                    <option value="1">Giá thấp đến cao</option>
-                                                    <option value="0">Giá cao đến thấp</option>
-                                                }
-                                            </select>
-                                        </div>
-                                        <div hidden class="form-group col-3">
-                                            <select class="form-control sc-input" name="limitPeopleSelect" id="exampleFormControlSelect1">
-                                                @for (int peo = min_people; peo <= max_people; peo++)
-                                                {
-                                                    if (limitPeople != null)
+                                                </select>
+                                            </div>
+                                            <div hidden class="form-group col-3">
+                                                <select class="form-control sc-input" name="limitPeopleSelect" id="exampleFormControlSelect1">
+                                                    @for (int peo = min_people; peo <= max_people; peo++)
                                                     {
-                                                        if (peo.ToString() + " người/phòng" == limitPeople)
+                                                        if (limitPeople != null)
                                                         {
-                                                            <option selected="selected">@peo người/phòng</option>
+                                                            if (peo.ToString() + " người/phòng" == limitPeople)
+                                                            {
+                                                                <option selected="selected">@peo người/phòng</option>
+                                                            }
+                                                            else
+                                                            {
+                                                                <option>@peo người/phòng</option>
+                                                            }
                                                         }
                                                         else
                                                         {
                                                             <option>@peo người/phòng</option>
                                                         }
+
+
                                                     }
-                                                    else
-                                                    {
-                                                        <option>@peo người/phòng</option>
-                                                    }
-
-
-                                                }
-                                            </select>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col position-relative">
+                                                <button type="submit" class="form-control btn btn-search text-white">TÌM KIẾM</button>
+                                            </div>
                                         </div>
-                                        <div class="form-group col position-relative">
-                                            <button type="submit" class="form-control btn btn-search text-white">TÌM KIẾM</button>
-                                        </div>
-                                    </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    @*<div class="row">
-                        <div class="col-sm-5">
-                            <p class="fs20 mt-2">Thông tin khách sạn</p>
-                        </div>
-                    </div>*@
-                    <div class="row">
-                        <div class="col-sm-3">
-                            @*<div class="sidebar">
-
-                                <div class="form-row">
-                                    <div class="col-sm-12">
-                                        <div class="soutchai-item block-item" style="height:400px">
-                                            <a>
-                                                <div class="soutchai-item-img">
-                                                    <img src="@hotel_current.Image_url" style="width:270px; height:150px" />
-                                                    <div class="top-left">
-                                                        <i class="fas fa-map-marker-alt fs13"></i>
-                                                        <span class="t_white">@hotel_current.Address</span>
-                                                    </div>
-                                                </div>
-                                                <ul class="">
-                                                    <li class="position-relative">
-                                                        <p style="font-size:17px" class="title">@hotel_current.HotelName</p>
-                                                    </li>
-                                                    <li class="position-relative" style="margin-top:5px">
-                                                        @for (int star = 0; star < hotel_current.Star; star++)
-                                                        {
-                                                            <img src="~/image/unnamed.jpg" style="width:30px; height:30px" />
-                                                        }
-
-                                                    </li>
-                                                    <p class="fs12 text-grey">
-                                                    <p style="font-size:13px; margin-top:6px">@hotel_current.Description</p>
-                                                    </p>
-                                                    <li class="price pt-2">
-                                                        <p class="fs12 text-grey">
-                                                        <p>
-                                                            <span class="latest_price color-main"><b>@hotel_current.MinPrice - @hotel_current.MaxPrice đ/ngày</b></span>
-                                                        </p>
-
-                                                        <i style="margin-top:25px; font-size:13px">
-                                                            @hotel_current.AddressDetail
-                                                        </i>
-                                                        <p class="fs12 text-grey">
-                                                        <p style="font-size:13px; margin-top:6px">Bình Luận (@hotel_current.TotalComment)</p>
-                                                        </p>
-
-                                                        </p>
-                                                    </li>
-                                                </ul>
-                                            </a>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                            </div>*@
-
-                            <div class="row" style="margin-top:15px">
-                                <div class="col-sm-5">
-                                    <b style="font-size:16px; margin-top:10px">Tiện nghi</b>
+                                    </form>
                                 </div>
                             </div>
-                            <div class="sidebar">
-
-                                <div class="form-row">
-                                    <div class="col-sm-12">
-                                        <div class="form-group">
-                                            @foreach (var it in convenientList)
-                                            {
-                                                <div class="form-row" style="display:flex; justify-content:center; align-items:center; margin-top:20px">
-                                                    <img src="@it.Convenient_image" style="width:25px; height:25px" />
-                                                    <b style="margin-left:15px;">@it.Convenient_name</b>
-                                                    @if (convenientSelect.Contains(it.Convenient_id.ToString()))
-                                                    {
-                                                        <input type="checkbox" id="" name="convenient+@it.Convenient_id" checked="checked" style="margin-left:20px; align-content:center; font-family" />
-                                                    }
-                                                    else
-                                                    {
-                                                        <input type="checkbox" id="" name="convenient+@it.Convenient_id" style="margin-left:20px; align-content:center; font-family" />
-                                                    }
-                                                </div>
-                                            }
-
-                                        </div>
-                                    </div>
-                                </div>
-                                </form>
-                            </div>
                         </div>
-
-
-
-
-                        <div class="col-sm-9">
-
+                        <div class="col-sm-12">
                             <div class="row pb-3">
                                 @foreach (var it in rooms)
                                 {
-                                    <div class="col-sm-4" style="margin-top:20px;">
-                                        <div class="soutchai-item block-item" style="height:450px">
-                                            <a href="@Url.Action("DetailRoom", "Hotel2", new { @hotel_rooms_id = it.Hotel_rooms_id})">
-                                                <div class="soutchai-item-img">
+                                    <div class="col-sm-12 mb-3 style="border-top: 1px solid #dadada;">
+                                        <h4>Mã phòng: @it.Hotel_rooms_id</h4>
+                                        <div class="row" style="margin-top:20px; border-top: 1px solid #dadada">
+                                            <div class="col-sm-3 soutchai-item-img" style="text-align:left">
+                                                <a href="@Url.Action("DetailRoom", "Hotel2", new { @hotel_rooms_id = it.Hotel_rooms_id})">
                                                     <img src="@it.Detail_header_image_url_1" style="width:270px; height:150px" />
-
+                                                </a>
+                                            </div>
+                                            <div class="col-sm-9" style="padding: 15px">
+                                                <p class="fs14 semi-bold">Mã phòng: @it.Hotel_rooms_id</p>
+                                                <div class="row">
+                                                    <div class="col" style="text-align:left">
+                                                        <p style="font-size:15px"><i class="fas fa-ruler-combined"></i> Diện tích phòng: @it.Acreage m2</p>
+                                                        <p style="font-size:15px"><i class="fas fa-home"></i> Phòng tầng: @it.Floors</p>
+                                                    </div>
+                                                    <div class="col" style="text-align:center">
+                                                        <p style="font-size:15px"><i class="fas fa-bed"></i> Số giường: @it.Bed_count</p>
+                                                    </div>
+                                                    <div class="col" style="text-align:right">
+                                                        <p style="font-size:15px"><i class="fas fa-users"></i> Số người(người lớn): @it.Limit_people</p>
+                                                    </div>
                                                 </div>
-                                                <ul class="">
-                                                    <li class="position-relative">
-                                                        <p style="font-size:17px" class="title">Mã số phòng: @it.Hotel_rooms_id</p>
-                                                    </li>
-                                                    <li class="price pt-2">
-                                                        <p>
-                                                            <img src="~/image/price.png" style="width:25px; height:25px" />
-                                                            <span class="latest_price color-main"><b>@it.Sell_price đ/ngày</b></span>
-                                                        </p>
-                                                        <br />
-                                                        <hr />
-
-                                                        <p style="margin-top:10px">
-                                                            <img src="~/image/acreage.png" style="width:35px; height:35px" />
-                                                            <b style="font-size:15px; margin-left:20px">@it.Acreage m2</b>
-                                                        </p>
-                                                        <p style="margin-top:10px">
-                                                            <img src="~/image/bed.png" style="width:35px; height:35px" />
-                                                            <b style="font-size:15px; margin-left:20px">@it.Bed_count giường</b>
-                                                        </p>
-                                                        <p style="margin-top:10px">
-                                                            <img src="~/image/floor.png" style="width:35px; height:35px" />
-                                                            <b style="font-size:15px; margin-left:20px">Tầng @it.Floors</b>
-                                                        </p>
-                                                        <p style="margin-top:10px">
-                                                            <img src="~/image/people.png" style="width:35px; height:35px" />
-                                                            <b style="font-size:15px; margin-left:20px">@it.Limit_people Người</b>
-                                                        </p>
-
-
-                                                    </li>
-                                                </ul>
-                                            </a>
+                                                <div class="row mt-3 pt-2" style="border-top: 1px solid #dadada">
+                                                    <div class="col">
+                                                        <p style="font-size: 15px; color: rgb(0, 166, 81);"><i class="fas fa-utensils"></i> Miễn phí bữa sáng</p>
+                                                        <p style="font-size: 15px; color: rgb(0, 166, 81);"><i class="fas fa-wifi"></i> Wifi miễn phí</p>
+                                                    </div>
+                                                    <div class="col">
+                                                        <p style="font-size:15px;color: #8F8F8F;text-align:center"><i class="fas fa-file-invoice-dollar"></i> Hủy phòng không thu phí</p>
+                                                    </div>
+                                                    <div class="col" style="text-align:right">
+                                                        <p style="font-size:12px;color: #8F8F8F;text-decoration: line-through;"><b>@it.Price</b></p>
+                                                        <p style="font-size: 20px; line-height: 1.17; color: #F96D01; font-weight: 700;"> @it.Sell_price VNĐ</p>
+                                                        <p style="font-size:12px;color: #8F8F8F;">/ngày /đêm</p>
+                                                        <a href="@Url.Action("DetailRoom", "Hotel2", new { @hotel_rooms_id = it.Hotel_rooms_id})" style=" background: none; overflow: visible; /* -webkit-appearance: button; */ -moz-appearance: button; appearance: button; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; border: none; color: #fff; cursor: pointer; font-size: 14px; text-align: center; position: relative; border-radius: 3px; -webkit-transition: all .1s ease; transition: all .1s ease; line-height: 1; font-weight: 700; -webkit-font-smoothing: antialiased;background-color: #f96d01;margin-top: 8px;padding: 8px 30px;line-height: 16px;" type="button">Đặt ngay</a>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 }
-
                             </div>
                             <br />
                             <div class="sc-pagination pb-5">
@@ -271,43 +202,45 @@
                                 </nav>
                             </div>
                             <hr />
-                            <div style="display:flex; flex-direction:column">
-                                <b style="font-size:25px; margin-bottom:30px">Bình Luận</b>
-                                @if(username != null) { 
-                                <form method="post", action="/Hotel2/SendComment">
-                                    <div hidden id="user_id">@idAccount</div>
-                                    <textarea ondurationchange="textChange()" id="contentComment" name="contentComment" style="width:870px; height:70px; margin-bottom:20px"></textarea>
-                                    <button type="submit" id="btnSend" style="width:150px; height:30px; margin-bottom:20px">Gửi bình luận</button>
+                            <hr class="mt-5 mb-5 line">
+                            <div class="expect-area">
+                                <div class="">
+                                    <h3 class="text-red fs26">Người dùng đánh giá gì về khách sạn ?</h3>
+                                </div>
+                                <div style="display:flex; flex-direction:column">
+                                    <b style="font-size:14px; margin-bottom:10px">Bình Luận</b>
+                                    @if (username != null)
+                                    {
+                                        <form method="post" , action="/Hotel2/SendComment">
+                                            <div hidden id="user_id">@idAccount</div>
+                                            <textarea ondurationchange="textChange()" id="contentComment" name="contentComment" style="width:100%; height:70px; margin-bottom:20px"></textarea>
+                                            <button type="submit" id="btnSend" style="width:150px; height:30px; margin-bottom:20px">Gửi bình luận</button>
+                                        </form>
+                                    }
+                                    @foreach (var it in commentList)
+                                    {
+                                        <div style="display:flex; flex-direction:row; margin-top:20px">
+                                            <img src="~/image/user.jpg" style="width:40px; height:40px" />
+                                            <div style="display:flex; flex-direction:column">
+                                                <b style="font-size:14px; color:dimgray; margin-left:10px">@it.Username</b>
+                                                <ul style="font-size:12px; margin-left:10px; margin-top:5px;color:gray">
+                                                    @it.Content
+                                                </ul>
+                                                <br />
 
-                                </form>
-                                }
-                                
-                                
-                                @foreach (var it in commentList)
-                                {
-                                    <div style="display:flex; flex-direction:row; margin-top:20px">
-                                        <img src="~/image/user.jpg" style="width:60px; height:50px" />
-                                        <div style="display:flex; flex-direction:column">
-                                            <b style="font-size:15px; color:blue; margin-left:10px">@it.Username</b>
-                                            <ul style="font-size:15px; margin-left:10px">
-                                                @it.Content
-                                            </ul>
-                                            <br />
-                                            
+                                            </div>
                                         </div>
+                                    }
 
-
-                                    </div>
-                                }
-
+                                </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
 
 </section>
+    </div>
 <script>
     function textChange() {
         var text = document.getElementById("contentComment");
@@ -316,5 +249,25 @@
         }
     }
 </script>
+<script>
+    function currentDiv(n) {
+        showDivs(slideIndex = n);
+    }
 
+    function showDivs(n) {
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("demo");
+        if (n > x.length) { slideIndex = 1 }
+        if (n < 1) { slideIndex = x.length }
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" w3-opacity-off", "");
+        }
+        x[slideIndex - 1].style.display = "block";
+        dots[slideIndex - 1].className += " w3-opacity-off";
+    }
+</script>
 
