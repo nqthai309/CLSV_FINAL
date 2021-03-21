@@ -4,31 +4,36 @@
     Layout = "~/Areas/Backend/Views/Shared/Backend.cshtml";
 }
 
-<div class="row">
-    <div class="col-lg-12">
-        <div class="card">
-            <div class="card-header"><i class="fa fa-align-justify"></i> Danh sách loại người dùng</div>
-            <div class="card-body">
-                <table class="table table-responsive-sm">
-                    <thead>
-                        <tr>
-                            <th>Mã loại người dùng</th>
-                            <th>Tên loại người dùng</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @for (int i = 0; i < 3; i++)
-                        {
+@using CNW_N8_MVC.Class;
+@model List<CNW_N8_MVC.Class.Role>
+
+
+<form>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header"><i class="fa fa-align-justify"></i> Danh sách loại người dùng</div>
+                <div class="card-body">
+                    <table class="table table-responsive-sm">
+                        <thead>
                             <tr>
-                                <td>1</td>
-                                <td>admin</td>
-                                <td><a href="@Url.Action("EditLocation","BackendRole", new {})">Sửa</a></td>
-                                <td><a style="color:red" href="@Url.Action("DeleteLocation","BackendRole",new {})">Xoá</a></td>
+                                <th>Mã loại người dùng</th>
+                                <th>Tên loại người dùng</th>
                             </tr>
-                        }
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            @foreach (Role it in Model)
+                            {
+                                <tr>
+                                    <td>@it.Role_id</td>
+                                    <td>@it.Role_name</td>
+                                    <td><a style="color:red" href="@Url.Action("DeleteRole","BackendRole",new {@id = it.Role_id})">Xoá</a></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</form>

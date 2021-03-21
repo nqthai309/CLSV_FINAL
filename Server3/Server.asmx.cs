@@ -800,6 +800,220 @@ namespace Server3
 
         //--------------------THANG--------------------------//
         //code tai day//
+        [WebMethod]
+        public string BE_GetListUser()
+        {
+            var list = from u in context.users
+                       select new
+                       { u.user_id, u.username, u.password, u.roles.role_name, u.full_name, u.phone, u.email, u.address, u.point, u.discount.discount_value };
+            return JsonConvert.SerializeObject(list);
+        }
+
+        [WebMethod]
+        public void BE_AddUser(string json)
+        {
+            var user = JsonConvert.DeserializeObject<users>(json);
+            var newUser = new users();
+            newUser.username = user.username;
+            newUser.password = EncodingPassword(user.password);
+            newUser.role_id = user.role_id;
+            newUser.full_name = user.full_name;
+            newUser.phone = user.phone;
+            newUser.email = user.email;
+            newUser.address = user.address;
+            newUser.point = user.point;
+            newUser.discount_id = user.discount_id;
+            context.users.Add(newUser);
+            context.SaveChanges();
+        }
+
+        [WebMethod]
+        public string BE_FindUserByUser_id(string user_id)
+        {
+            var user = from u in context.users
+                       where u.user_id.ToString() == user_id
+                       select
+                       new { u.user_id, u.username, u.password, u.role_id, u.full_name, u.phone, u.email, u.address, u.point, u.discount_id };
+            return JsonConvert.SerializeObject(user);
+        }
+
+        [WebMethod]
+        public void EditUser_BE(string json)
+        {
+            var newUser = JsonConvert.DeserializeObject<users>(json);
+            var user_old = context.users.Find(newUser.user_id);
+            user_old.password = EncodingPassword(newUser.password);
+            user_old.role_id = newUser.role_id;
+            user_old.full_name = newUser.full_name;
+            user_old.email = newUser.email;
+            user_old.phone = newUser.phone;
+            user_old.address = newUser.address;
+            user_old.point = newUser.point;
+            user_old.discount_id = newUser.discount_id;
+            context.SaveChanges();
+
+        }
+
+        [WebMethod]
+        public void BE_DeleteUser(int id)
+        {
+            var user = context.users.Find(id);
+            context.users.Remove(user);
+            context.SaveChanges();
+        }
+
+        [WebMethod]
+        public string BE_GetListRole()
+        {
+            var list = from u in context.roles
+                       select
+                       new { u.role_id, u.role_name };
+            return JsonConvert.SerializeObject(list);
+
+        }
+
+        [WebMethod]
+        public string FE_FindRoleByRole_id(string role_id)
+        {
+            var role = from u in context.roles
+                       where u.role_id.ToString() == role_id
+                       select new { u.role_id, u.role_name };
+            return JsonConvert.SerializeObject(role);
+        }
+
+        [WebMethod]
+        public void BE_DeleteRole(int id)
+        {
+            var role = context.roles.Find(id);
+            context.roles.Remove(role);
+            context.SaveChanges();
+        }
+
+        [WebMethod]
+        public void BE_AddRole(string json)
+        {
+            var role = JsonConvert.DeserializeObject<roles>(json);
+            var newRole = new roles();
+            newRole.role_name = role.role_name;
+            context.roles.Add(newRole);
+            context.SaveChanges();
+        }
+
+        [WebMethod]
+        public string BE_GetListDiscount()
+        {
+            var list = from u in context.discount
+                       select new { u.discount_id, u.discount_value };
+            return JsonConvert.SerializeObject(list);
+        }
+
+        [WebMethod]
+        public void BE_AddDiscount(string json)
+        {
+            var discount = JsonConvert.DeserializeObject<discount>(json);
+            var newDiscount = new discount();
+            newDiscount.discount_id = discount.discount_id;
+            newDiscount.discount_value = discount.discount_value;
+            context.discount.Add(newDiscount);
+            context.SaveChanges();
+        }
+
+        [WebMethod]
+        public string FE_FindDiscountByDiscount_id(string discount_id)
+        {
+            var discount = from u in context.discount
+                           where u.discount_id == discount_id
+                           select new { u.discount_id, u.discount_value };
+            return JsonConvert.SerializeObject(discount);
+
+        }
+
+        [WebMethod]
+        public void FE_DeleteDiscount(string id)
+        {
+            var discount = context.discount.Find(id);
+            context.discount.Remove(discount);
+            context.SaveChanges();
+        }
+
+        [WebMethod]
+        public void BE_EditDiscount(string json, string id_old)
+        {
+            var newDiscount = JsonConvert.DeserializeObject<discount>(json);
+            var discount_old = context.discount.Find(id_old);
+            //discount_old.discount_id = newDiscount.discount_id;
+            discount_old.discount_value = newDiscount.discount_value;
+            context.SaveChanges();
+        }
+        [WebMethod]
+        public string BE_ListLocation()
+        {
+            var location = from u in context.locations
+                           select new { u.location_id, u.location_name };
+            return JsonConvert.SerializeObject(location);
+        }
+
+        [WebMethod]
+        public void BE_AddLocation(string json)
+        {
+            var location = JsonConvert.DeserializeObject<locations>(json);
+            context.locations.Add(location);
+            context.SaveChanges();
+        }
+
+        [WebMethod]
+        public string BE_FindLocationByLocation_id(int id)
+        {
+            var location = from u in context.locations
+                           where u.location_id == id
+                           select new { u.location_id, u.location_name, u.image_url };
+            return JsonConvert.SerializeObject(location);
+        }
+
+        [WebMethod]
+        public void BE_EditLocation(string json)
+        {
+            var newLocation = JsonConvert.DeserializeObject<locations>(json);
+            var oldLocation = context.locations.Find(newLocation.location_id);
+            oldLocation.location_name = newLocation.location_name;
+            oldLocation.image_url = newLocation.image_url;
+            context.SaveChanges();
+        }
+        [WebMethod]
+        public string BE_ListService()
+        {
+            var service = from u in context.services
+                          select new { u.service_id, u.service_name, u.service_image };
+            return JsonConvert.SerializeObject(service);
+        }
+
+        [WebMethod]
+        public void BE_AddService(string json)
+        {
+            var service = JsonConvert.DeserializeObject<services>(json);
+            context.services.Add(service);
+            context.SaveChanges();
+        }
+
+        [WebMethod]
+        public string BE_FindServiceByService_id(int id)
+        {
+            var service = from u in context.services
+                          where u.service_id == id
+                          select new { u.service_id, u.service_name, u.service_image };
+            return JsonConvert.SerializeObject(service);
+        }
+
+        [WebMethod]
+        public void BE_EditService(string json)
+        {
+            var newService = JsonConvert.DeserializeObject<services>(json);
+            var oldService = context.services.Find(newService.service_id);
+            oldService.service_name = newService.service_name;
+            oldService.service_image = newService.service_image;
+            context.SaveChanges();
+
+        }
         //--------------------THANG-------------------------//
 
 

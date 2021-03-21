@@ -5,9 +5,8 @@
 }
 
 
-@using CNW_N8_MVC.Models;
-@model dynamic
-
+@using CNW_N8_MVC.Class;
+@model List<CNW_N8_MVC.Class.Users_BE_Add>
 
 <div class="card">
     <div class="card-header"><strong>Basic Form</strong> Elements</div>
@@ -57,7 +56,19 @@
             <div class="form-group row">
                 <label class="col-md-3 col-form-label" for="address">Địa chỉ</label>
                 <div class="col-md-9">
-                    <input class="form-control" type="address" id="address" name="address" placeholder="Enter Email" autocomplete="email">
+                    <input class="form-control" type="address" id="address" name="address" placeholder="Địa Chỉ" autocomplete="email">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="address">Điểm tích lũy</label>
+                <div class="col-md-9">
+                    <input class="form-control" type="text" id="point" name="point" value="0">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="address">Mã Khuyến Mại</label>
+                <div class="col-md-9">
+                    <input class="form-control" type="text" id="discount_id" name="discount_id" value="1">
                 </div>
             </div>
 
@@ -68,5 +79,5 @@
         </form>
     </div>
 </div>
-<script src="~/Scripts/js/AddUser.js"></script>
+@*<script src="~/Scripts/js/AddUser.js"></script>*@
 

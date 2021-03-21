@@ -4,6 +4,9 @@
     Layout = "~/Areas/Backend/Views/Shared/Backend.cshtml";
 }
 
+@using CNW_N8_MVC.Class;
+@{ var services = ViewData["services"] as IEnumerable<BE_Service>;}
+
 <div class="row">
     <div class="col-lg-12">
         <div class="card">
@@ -17,13 +20,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @for (int i = 0; i < 3; i++)
+                        @foreach (var it in services)
                         {
                             <tr>
-                                <td>1</td>
-                                <td>Buffet ăn sáng</td>
-                                <td><a href="@Url.Action("EditLocation","BackendLocation", new {})">Sửa</a></td>
-                                <td><a style="color:red" href="@Url.Action("DeleteLocation","BackendLocation",new {})">Xoá</a></td>
+                                <td>@it.Service_id</td>
+                                <td>@it.Service_name</td>
+                                <td><a href="@Url.Action("Edit","BackendService", new {@id = it.Service_id})">Sửa</a></td>
                             </tr>
                         }
                     </tbody>

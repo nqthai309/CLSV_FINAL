@@ -4,20 +4,23 @@
     Layout = "~/Areas/Backend/Views/Shared/Backend.cshtml";
 }
 
+@using CNW_N8_MVC.Class;
+@model List<CNW_N8_MVC.Class.Discount>
+
 <div class="card">
     <div class="card-header"><strong>Thêm Ưu Đãi</strong> </div>
     <div class="card-body">
-        <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+        <form class="form-horizontal" action="/BackendDiscount/AddDiscount" method="post" enctype="multipart/form-data">
             <div class="form-group row">
                 <label class="col-md-3 col-form-label" for="text-input">Mã ưu đãi</label>
                 <div class="col-md-9">
-                    <input class="form-control" id="" type="text" name="" placeholder="Mã ưu đãi">
+                    <input class="form-control" id="discount_id" type="number" name="discount_id" placeholder="Mã ưu đãi">
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-md-3 col-form-label" for="text-input">Giá trị</label>
                 <div class="col-md-9">
-                    <input class="form-control" id="" type="number" name="" placeholder="Giá trị">
+                    <input class="form-control" id="discount_value" type="" name="discount_value" placeholder="Giá trị ưu đãi">
                 </div>
             </div>
 

@@ -4,19 +4,20 @@
     Layout = "~/Areas/Backend/Views/Shared/Backend.cshtml";
 }
 
+@using CNW_N8_MVC.Class;
+@model List<CNW_N8_MVC.Class.Role>
+
 <div class="card">
-    <div class="card-header"><strong>Thêm Loại Người Dùng</strong> </div>
+    <div class="card-header"><strong>Basic Form</strong> Thêm Loại Người Dùng </div>
     <div class="card-body">
-        <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+        <form class="form-horizontal" action="/BackendRole/AddRole" method="post" enctype="multipart/form-data">
 
             <div class="form-group row">
                 <label class="col-md-3 col-form-label" for="text-input">Tên loại người dùng</label>
                 <div class="col-md-9">
-                    <input class="form-control" id="" type="text" name="" placeholder="Tên loại người dùng">
+                    <input class="form-control" id="role_name" type="text" name="role_name" placeholder="Tên loại người dùng">
                 </div>
             </div>
-
-            <div style="color:red; font-size:20px; text-align:center" id="divThongBao"></div>
             <div class="card-footer">
                 <button id="btnThem" class="btn btn-sm btn-primary" type="submit"> Submit</button>
             </div>

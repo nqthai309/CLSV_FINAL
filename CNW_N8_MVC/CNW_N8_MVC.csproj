@@ -165,11 +165,18 @@
     <Compile Include="Areas\Backend\Controllers\BackendUserController.cs" />
     <Compile Include="Areas\Backend\Controllers\BaseController.cs" />
     <Compile Include="Areas\Backend\Controllers\BackendHomeController.cs" />
+    <Compile Include="Class\BE_CommentStatistical.cs" />
+    <Compile Include="Class\BE_HistoryBooking.cs" />
     <Compile Include="Class\BE_ItemHotel.cs" />
     <Compile Include="Class\BE_ItemHotelRoom.cs" />
+    <Compile Include="Class\BE_Location.cs" />
+    <Compile Include="Class\BE_OrderStatistical.cs" />
+    <Compile Include="Class\BE_Service.cs" />
+    <Compile Include="Class\BE_TotalPriceByUser.cs" />
     <Compile Include="Class\Cart.cs" />
     <Compile Include="Class\CommentChild.cs" />
     <Compile Include="Class\CommentRoot.cs" />
+    <Compile Include="Class\Discount.cs" />
     <Compile Include="Class\ItemBanners.cs" />
     <Compile Include="Class\ItemBooking.cs" />
     <Compile Include="Class\ItemBookingDetail.cs" />
@@ -184,7 +191,10 @@
     <Compile Include="Class\ItemLocation.cs" />
     <Compile Include="Class\ItemService.cs" />
     <Compile Include="Class\Product.cs" />
+    <Compile Include="Class\Role.cs" />
     <Compile Include="Class\Users.cs" />
+    <Compile Include="Class\Users_BE.cs" />
+    <Compile Include="Class\Users_BE_Add.cs" />
     <Compile Include="Connected Services\Server\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -366,6 +376,78 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <Content Include="Connected Services\Server\CNW_N8_MVC.Server.BE_AddHotelRoomResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\Server\CNW_N8_MVC.Server.BE_GetCommentStatisticalResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\Server\CNW_N8_MVC.Server.BE_GetOrderStatisticalResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\Server\CNW_N8_MVC.Server.BE_TotalPriceByUserResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\Server\CNW_N8_MVC.Server.FE_GetHistoryOrder_UserResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\Server\CNW_N8_MVC.Server.BE_AddDiscountResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\Server\CNW_N8_MVC.Server.BE_AddLocationResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\Server\CNW_N8_MVC.Server.BE_AddRoleResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\Server\CNW_N8_MVC.Server.BE_AddServiceResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\Server\CNW_N8_MVC.Server.BE_AddUserResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\Server\CNW_N8_MVC.Server.BE_EditDiscountResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\Server\CNW_N8_MVC.Server.BE_EditLocationResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\Server\CNW_N8_MVC.Server.BE_EditServiceResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\Server\CNW_N8_MVC.Server.BE_FindLocationByLocation_idResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\Server\CNW_N8_MVC.Server.BE_FindServiceByService_idResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\Server\CNW_N8_MVC.Server.BE_FindUserByUser_idResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\Server\CNW_N8_MVC.Server.BE_GetListDiscountResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\Server\CNW_N8_MVC.Server.BE_GetListRoleResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\Server\CNW_N8_MVC.Server.BE_GetListUserResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\Server\CNW_N8_MVC.Server.BE_ListLocationResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\Server\CNW_N8_MVC.Server.BE_ListServiceResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\Server\CNW_N8_MVC.Server.EditUser_BEResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\Server\CNW_N8_MVC.Server.FE_DeleteDiscountResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\Server\CNW_N8_MVC.Server.FE_FindDiscountByDiscount_idResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\Server\CNW_N8_MVC.Server.FE_FindRoleByRole_idResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <None Include="Connected Services\Server\Server.disco" />

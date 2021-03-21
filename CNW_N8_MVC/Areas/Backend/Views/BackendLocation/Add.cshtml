@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Add";
     Layout = "~/Areas/Backend/Views/Shared/Backend.cshtml";
 }
@@ -7,12 +6,20 @@
 <div class="card">
     <div class="card-header"><strong>Thêm Địa Danh</strong> </div>
     <div class="card-body">
-        <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+        <form class="form-horizontal" action="/BackendLocation/AddLocation" method="post" enctype="multipart/form-data">
 
             <div class="form-group row">
                 <label class="col-md-3 col-form-label" for="text-input">Tên Địa Danh</label>
                 <div class="col-md-9">
-                    <input class="form-control" id="" type="text" name="" placeholder="Tên địa danh">
+                    <input class="form-control" id="location_name" type="text" name="location_name" placeholder="Tên địa danh">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="text-input">Ảnh Địa Danh</label>
+                <div class="col-md-9">
+                    <input onchange="imgFunction()" class="form-control" readonly id="myfile" type="file" name="" placeholder="Ảnh Đại Danh">
+                    <img style="width:200px; height:200px;" id="image_add" />
+                    <input hidden id="img_hidden" name="image_url" value="" />
                 </div>
             </div>
 
@@ -23,3 +30,12 @@
         </form>
     </div>
 </div>
+
+<script>
+    function imgFunction() {
+        var path = document.getElementById("myfile").value;
+        path = path.split('fakepath')[1];
+        document.getElementById("image_add").src = "\\Anh_DTB" + path;
+        document.getElementById("img_hidden").value = "\\Anh_DTB" + path;
+    }
+</script>

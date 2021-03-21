@@ -7,15 +7,22 @@
 <div class="card">
     <div class="card-header"><strong>Thêm dịch vụ</strong> </div>
     <div class="card-body">
-        <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+        <form class="form-horizontal" action="/BackendService/AddService" method="post" enctype="multipart/form-data">
 
             <div class="form-group row">
                 <label class="col-md-3 col-form-label" for="text-input">Tên dịch vụ</label>
                 <div class="col-md-9">
-                    <input class="form-control" id="" type="text" name="" placeholder="Tên dịch vụ">
+                    <input class="form-control" id="service_name" type="text" name="service_name" placeholder="Tên dịch vụ">
                 </div>
             </div>
-
+            <div class="form-group row">
+                <label class="col-md-3 col-form-label" for="text-input">Ảnh Dịch Vụ</label>
+                <div class="col-md-9">
+                    <input onchange="imgFunction()" class="form-control" readonly id="myfile" type="file" name="" placeholder="Ảnh Dịch Vụ">
+                    <img style="width:200px; height:200px;" id="image_add" />
+                    <input hidden id="img_hidden" name="service_image" value="" />
+                </div>
+            </div>
             <div style="color:red; font-size:20px; text-align:center" id="divThongBao"></div>
             <div class="card-footer">
                 <button id="btnThem" class="btn btn-sm btn-primary" type="submit"> Submit</button>
@@ -23,3 +30,12 @@
         </form>
     </div>
 </div>
+
+<script>
+    function imgFunction() {
+        var path = document.getElementById("myfile").value;
+        path = path.split('fakepath')[1];
+        document.getElementById("image_add").src = "\\Anh_DTB" + path;
+        document.getElementById("img_hidden").value = "\\Anh_DTB" + path;
+    }
+</script>

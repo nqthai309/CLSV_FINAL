@@ -3,28 +3,50 @@
     ViewBag.Title = "Add";
     Layout = "~/Areas/Backend/Views/Shared/Backend.cshtml";
 }
+@using CNW_N8_MVC.Class;
+@{ var location = ViewData["acc"] as IEnumerable<CNW_N8_MVC.Class.BE_Location>;}
 
 <div class="card">
     <div class="card-header"><strong>Sửa Địa Danh</strong> </div>
     <div class="card-body">
-        <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
-            <div class="form-group row">
-                <label class="col-md-3 col-form-label" for="text-input">Mã Địa Danh</label>
-                <div class="col-md-9">
-                    <input class="form-control" id="" type="text" name="" readonly placeholder="Mã địa danh">
+        <form class="form-horizontal" action="/BackendLocation/EditLocation" method="post" enctype="multipart/form-data">
+            @foreach (var it in location)
+            {
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="text-input">Mã Địa Danh</label>
+                    <div class="col-md-9">
+                        <input class="form-control" id="location_id" readonly type="text" name="location_id" value="@it.Location_id">
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-md-3 col-form-label" for="text-input">Tên Địa Danh</label>
-                <div class="col-md-9">
-                    <input class="form-control" id="" type="text" name="" placeholder="Tên địa danh">
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="text-input">Tên Địa Danh</label>
+                    <div class="col-md-9">
+                        <input class="form-control" id="location_name" type="text" name="location_name" value="@it.Location_name">
+                    </div>
                 </div>
-            </div>
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="text-input">Ảnh Địa Danh</label>
+                    <div class="col-md-9">
+                        <input onchange="imgFunction()" class="form-control" readonly id="myfile" type="file" name="" value="@it.Image_url">
+                        <img style="width:200px; height:200px;" id="image_add" src="@it.Image_url" />
+                        <input hidden id="img_hidden" name="image_url" value="" />
+                    </div>
+                </div>
 
-            <div style="color:red; font-size:20px; text-align:center" id="divThongBao"></div>
-            <div class="card-footer">
-                <button id="btnThem" class="btn btn-sm btn-primary" type="submit"> Submit</button>
-            </div>
+                <div style="color:red; font-size:20px; text-align:center" id="divThongBao"></div>
+                <div class="card-footer">
+                    <button id="btnThem" class="btn btn-sm btn-primary" type="submit"> Submit</button>
+                </div>
+            }
         </form>
     </div>
 </div>
+
+<script>
+    function imgFunction() {
+        var path = document.getElementById("myfile").value;
+        path = path.split('fakepath')[1];
+        document.getElementById("image_add").src = "\\Anh_DTB" + path;
+        document.getElementById("img_hidden").value = "\\Anh_DTB" + path;
+    }
+</script>

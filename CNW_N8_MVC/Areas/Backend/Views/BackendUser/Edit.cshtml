@@ -1,78 +1,92 @@
 ﻿
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Add";
     Layout = "~/Areas/Backend/Views/Shared/Backend.cshtml";
 }
 
-
-@*@model CNW_N8_MVC.Models.user*@
+@{ var acc = ViewData["acc"] as IEnumerable<CNW_N8_MVC.Class.Users_BE_Add>;}
 
 <div class="card">
     <div class="card-header"><strong>Basic Form</strong> Elements</div>
     <div class="card-body">
         <form class="form-horizontal" action="/BackendUser/EditUser/" method="post" enctype="multipart/form-data">
+            @foreach (var it in acc)
+            {
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="text-input">Tên đăng nhập</label>
+                    <div class="col-md-9">
+                        <input class="form-control" id="username" type="text" readonly="readonly" name="username" value="@it.Username">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="password">Mật khẩu</label>
+                    <div class="col-md-9">
+                        <input class="form-control" id="password" type="password" name="password" value="@it.Password" autocomplete="new-password"><span class="help-block"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="select1">Chức vụ</label>
+                    <div class="col-md-9">
+                        <select class="form-control" id="role_id" name="role_id">
 
-            <div class="form-group row">
-                <label class="col-md-3 col-form-label" for="text-input">Username</label>
-                <div class="col-md-9">
-                    <input class="form-control" id="username" type="text" readonly="readonly" name="username" placeholder="Username" value="@Model.username">
+                            @if (it.Role_id == 0)
+                            {
+                                <option selected="selected" value="0">Admin</option>
+                                <option value="1">Khách hàng</option>
+                            }
+                            else
+                            {
+                                <option selected="selected" value="1">Khách hàng</option>
+                                <option value="2">Admin</option>
+                            }
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-md-3 col-form-label" for="text-input">Họ và tên</label>
-                <div class="col-md-9">
-                    <input class="form-control" id="full_name" type="text" name="full_name" placeholder="Họ và tên" value="@Model.full_name">
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="text-input">Họ và tên</label>
+                    <div class="col-md-9">
+                        <input class="form-control" id="full_name" type="text" name="full_name" value="@it.Full_name">
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-md-3 col-form-label" for="email-input">Email</label>
-                <div class="col-md-9">
-                    <input class="form-control" id="email" type="email" name="email" placeholder="Nhập Email" autocomplete="email" value="@Model.email">
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="email-input">Email</label>
+                    <div class="col-md-9">
+                        <input class="form-control" id="email" type="email" name="email" value="@it.Email" autocomplete="email">
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-md-3 col-form-label" for="email-input">Số điện thoại</label>
-                <div class="col-md-9">
-                    <input class="form-control" type="phone" name="phone" id="phone" placeholder="Nhập số điện thoại" autocomplete="email" value="@Model.phone">
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="email-input">Số điện thoại</label>
+                    <div class="col-md-9">
+                        <input class="form-control" type="phone" id="phone" name="phone" autocomplete="" value="@it.Phone">
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-md-3 col-form-label" for="address">Địa chỉ</label>
-                <div class="col-md-9">
-                    <input class="form-control" type="address" name="address" id="address" placeholder="Enter Email" autocomplete="email" value="@Model.address">
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="address">Địa chỉ</label>
+                    <div class="col-md-9">
+                        <input class="form-control" type="address" id="address" name="address" value="@it.Address" autocomplete="">
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-md-3 col-form-label" for="password">Password</label>
-                <div class="col-md-9">
-                    <input class="form-control" id="password" type="password" name="password" placeholder="Password" autocomplete="new-password" value="@Model.password"><span class="help-block">Please enter a complex password</span>
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="address">Điểm tích lũy</label>
+                    <div class="col-md-9">
+                        <input class="form-control" type="text" id="point" name="point" value="@it.Point">
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-md-3 col-form-label" for="select1">Chức vụ</label>
-                <div class="col-md-9">
-                    <select class="form-control" id="role_id" name="role_id">
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="address">Khuyến Mại</label>
+                    <div class="col-md-9">
+                        <input class="form-control" type="text" id="discount_id" name="discount_id" value="@it.Discount_id">
+                    </div>
+                </div>
+                <div style="color:red; font-size:20px; text-align:center" id="divThongBao"></div>
+                <div class="card-footer">
+                    <button id="btnSua" class="btn btn-sm btn-primary" type="submit"> Submit</button>
+                </div>
+                <input value="@it.User_id" name="user_id" hidden />
 
+            }
 
-
-                        @if (Model.role_id == 0)
-                        {
-                            <option selected="selected" value="0">Admin</option>
-                            <option value="1">Khách hàng</option>
-                        }
-                        else
-                        {
-                            <option selected="selected" value="1">Khách hàng</option>
-                            <option value="0">Admin</option>
-                        }
-                    </select>
-                </div>
-            </div>
-            <div style="color:red; font-size:20px; text-align:center" id="divThongBao"></div>
-            <div class="card-footer">
-                <button id="btnSua" class="btn btn-sm btn-primary" type="submit"> Submit</button>
-            </div>
         </form>
     </div>
 </div>
-<script src="~/Scripts/js/EditUser.js"></script>
+@*<script src="~/Scripts/js/EditUser.js"></script>*@

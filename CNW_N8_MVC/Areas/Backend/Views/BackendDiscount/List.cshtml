@@ -4,31 +4,37 @@
     Layout = "~/Areas/Backend/Views/Shared/Backend.cshtml";
 }
 
-<div class="row">
-    <div class="col-lg-12">
-        <div class="card">
-            <div class="card-header"><i class="fa fa-align-justify"></i> Danh sách ưu đãi</div>
-            <div class="card-body">
-                <table class="table table-responsive-sm">
-                    <thead>
-                        <tr>
-                            <th>Mã ưu đãi</th>
-                            <th>Giá trị</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @for (int i = 0; i < 3; i++)
-                        {
+@using CNW_N8_MVC.Class;
+@model List<CNW_N8_MVC.Class.Discount>
+
+<form>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header"><i class="fa fa-align-justify"></i> Danh sách ưu đãi</div>
+                <div class="card-body">
+                    <table class="table table-responsive-sm">
+                        <thead>
                             <tr>
-                                <td>1</td>
-                                <td>20%</td>
-                                <td><a href="@Url.Action("EditLocation","BackendDiscount", new {})">Sửa</a></td>
-                                <td><a style="color:red" href="@Url.Action("DeleteLocation","BackendDiscount",new {})">Xoá</a></td>
+                                <th>Mã ưu đãi</th>
+                                <th>Giá trị</th>
                             </tr>
-                        }
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            @foreach (Discount it in Model)
+                            {
+                                <tr>
+                                    <td>@it.Discount_id</td>
+                                    <td>@it.Discount_value%</td>
+                                    <td><a href="@Url.Action("Edit","BackendDiscount", new {@id = it.Discount_id})">Sửa</a></td>
+                                    <td><a style="color:red" href="@Url.Action("DeleteDiscount","BackendDiscount",new {@id = it.Discount_id})">Xoá</a></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-</div>
+
+</form>

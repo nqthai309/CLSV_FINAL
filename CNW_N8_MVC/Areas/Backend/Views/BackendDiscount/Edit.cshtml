@@ -3,28 +3,33 @@
     ViewBag.Title = "Add";
     Layout = "~/Areas/Backend/Views/Shared/Backend.cshtml";
 }
-
+@{ var acc = ViewData["acc"] as IEnumerable<CNW_N8_MVC.Class.Discount>;}
 <div class="card">
     <div class="card-header"><strong>Sửa Ưu Đãi</strong> </div>
     <div class="card-body">
-        <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
-            <div class="form-group row">
-                <label class="col-md-3 col-form-label" for="text-input">Mã ưu đãi</label>
-                <div class="col-md-9">
-                    <input class="form-control" id="" type="text" readonly name="" placeholder="Mã ưu đãi">
+        <form class="form-horizontal" action="/BackendDiscount/EditDiscount" method="post" enctype="multipart/form-data">
+            @foreach (var it in acc)
+            {
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="text-input">Mã ưu đãi</label>
+                    <div class="col-md-9">
+                        <input class="form-control" id="discount_id" type="text" readonly name="discount_id" value="@it.Discount_id">
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-md-3 col-form-label" for="text-input">Giá trị</label>
-                <div class="col-md-9">
-                    <input class="form-control" id="" type="number" name="" placeholder="Giá trị">
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="text-input">Giá trị</label>
+                    <div class="col-md-9">
+                        <input class="form-control" id="discount_value" name="discount_value" value="@it.Discount_value">
+                    </div>
                 </div>
-            </div>
 
-            <div style="color:red; font-size:20px; text-align:center" id="divThongBao"></div>
-            <div class="card-footer">
-                <button id="btnThem" class="btn btn-sm btn-primary" type="submit"> Submit</button>
-            </div>
+                <div style="color:red; font-size:20px; text-align:center" id="divThongBao"></div>
+                <div class="card-footer">
+                    <button id="btnThem" class="btn btn-sm btn-primary" type="submit"> Submit</button>
+                </div>
+            }
         </form>
     </div>
 </div>
+
+

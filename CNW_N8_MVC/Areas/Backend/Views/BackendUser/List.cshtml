@@ -4,8 +4,8 @@
     Layout = "~/Areas/Backend/Views/Shared/Backend.cshtml";
 }
 
-@using CNW_N8_MVC.Models;
-@*@model List<CNW_N8_MVC.Models.user>*@
+@using CNW_N8_MVC.Class;
+@model List<CNW_N8_MVC.Class.Users_BE>
 <form>
     <div class="row">
         <div class="col-lg-12">
@@ -17,38 +17,39 @@
                         <thead>
 
                             <tr>
-                                <th>Username</th>
+                                <th>Mã Khách Hàng</th>
+                                <th>Tên Đăng Nhập</th>
+                                <th>Mật Khẩu</th>
+                                <th>Chức Vụ</th>
+                                <th>Họ và Tên</th>
                                 <th>Email</th>
-                                <th>Số điện thoại</th>
-                                <th>Điểm</th>
-                                <th>Giảm giá</th>
-                                <th>chức vụ</th>
+                                <th>Số Điện Thoại</th>
+                                <th>Địa Chỉ</th>
+                                <th>Điểm Tích Lũy</th>
+                                <th>Ưu Đãi</th>
                                 <th> </th>
                                 <th> </th>
                             </tr>
                         </thead>
                         <tbody>
 
-                            @*@foreach (user it in Model)
+                            @foreach (Users_BE it in Model)
                             {
                                 <tr>
-
-                                    <td>@it.username</td>
-                                    <td>@it.email</td>
-                                    <td>@it.phone</td>
-                                    @switch (@it.role_id)
-                                    {
-                                        case 0:
-                                            <td>Admin</td>
-                                            break;
-                                        case 1:
-                                            <td>Khách hàng</td>
-                                            break;
-                                    }
-                                    <td><a href="@Url.Action("Edit","BackendUser", new { @id = it.id})">Sửa</a></td>
-                                    <td><a style="color:red" href="@Url.Action("DeleteUser","BackendUser",new { @id = it.id})">Xoá</a></td>
+                                    <td>@it.User_id</td>
+                                    <td>@it.Username</td>
+                                    <td>@it.Password</td>
+                                    <td>@it.Role_name</td>
+                                    <td>@it.Full_name</td>
+                                    <td>@it.Email</td>
+                                    <td>@it.Phone</td>
+                                    <td>@it.Address</td>
+                                    <td>@it.Point</td>
+                                    <td>@it.Discount_value</td>
+                                    <td><a href="@Url.Action("Edit","BackendUser", new { @id = it.User_id})">Sửa</a></td>
+                                    <td><a style="color:red" href="@Url.Action("DeleteUser","BackendUser",new { @id = it.User_id})">Xoá</a></td>
                                 </tr>
-                            }*@
+                            }
                         </tbody>
                     </table>
 
