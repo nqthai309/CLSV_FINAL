@@ -136,10 +136,13 @@ namespace CNW_N8_MVC.Areas.Backend.Controllers
             //Màu chữ cho header của file excel
             gv.HeaderStyle.ForeColor = System.Drawing.Color.White;
 
-            gv.HeaderRow.Cells[0].Text = "Tên Khách Sạn";
-            gv.HeaderRow.Cells[1].Text = "Tên Người Dùng";
-            gv.HeaderRow.Cells[2].Text = "Nội Dung";
-            gv.HeaderRow.Cells[3].Text = "Thời Gian";
+            gv.HeaderRow.Cells[0].Text = "Mã Comment";
+            gv.HeaderRow.Cells[1].Text = "Mã Khách Sạn";
+            gv.HeaderRow.Cells[2].Text = "Mã Người Dùng";
+            gv.HeaderRow.Cells[3].Text = "Nội Dung";
+            gv.HeaderRow.Cells[4].Text = "Thời Gian";
+            gv.HeaderRow.Cells[5].Text = "Tên Khách Sạn";
+            gv.HeaderRow.Cells[6].Text = "Tên Người Dùng";
             gv.RenderControl(hw);
 
             Response.Output.Write(sw.ToString());
