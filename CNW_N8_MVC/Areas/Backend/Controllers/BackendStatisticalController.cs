@@ -22,10 +22,6 @@ namespace CNW_N8_MVC.Areas.Backend.Controllers
         {
             return View();
         }
-        public ActionResult RegisterStatistical()
-        {
-            return View();
-        }
 
     }
 }
