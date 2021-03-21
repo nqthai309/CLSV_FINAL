@@ -213,7 +213,7 @@ namespace CNW_N8_MVC.Controllers
             {
                 var listCartItem = cart.lines;
                 var totalBookingPrice = float.Parse(Request["totalBookingPrice"].ToString().Split('=')[1]);
-                payment_status = "Tiền Mặt";
+                payment_status = "Đang xử lý";
                 var respone = server.FE_Payment(JsonConvert.SerializeObject(listCartItem), acc.User_id, totalBookingPrice, payment_status);
                 if(respone == "1")
                 {
