@@ -28,7 +28,7 @@ namespace CNW_N8_MVC.Controllers
         static List<ItemListRoom> currentListRoom;
         static List<String> serviceSelect = new List<string>();
         static List<String> convenientSelect = new List<string>();
-        static List<ItemHistoryOrder> listHistory;
+        List<ItemHistoryOrder> listHistory = new List<ItemHistoryOrder>();
         static List<ItemHotelService> listServiceByHotel;
 
         static Server.ServerSoapClient server = new Server.ServerSoapClient();
@@ -312,6 +312,7 @@ namespace CNW_N8_MVC.Controllers
 
         public int checkDate(string checkin, string checkout)
         {
+            var history = JsonConvert.DeserializeObject<List<ItemHistoryOrder>>(server.FE_GetHistoryOrderOfRoom(hotel_ID, hotel_rooms_ID));
             if (checkin == "" || checkout == "")
             {
                 return -1;
@@ -320,14 +321,31 @@ namespace CNW_N8_MVC.Controllers
             {
                 DateTime checkIn = Convert.ToDateTime(checkin);
                 DateTime checkOut = Convert.ToDateTime(checkout);
-
-                if (checkOut <= checkIn)
+                DateTime today = DateTime.Now;
+                if (checkOut <= checkIn || (checkIn <= today || checkOut <= today) || (checkIn <= today && checkOut <= today))
                 {
                     return -1;
                 }
                 else
                 {
-                    return 1;
+                    if(history.Count != 0)
+                    {
+                        foreach(var it in history)
+                        {
+                            var c_in = Convert.ToDateTime(it.From_date);
+                            var c_out = Convert.ToDateTime(it.To_date);
+                            if(!(checkIn > c_out || checkOut < c_in))
+                            {
+                                return -1;
+                            }
+                        }
+                        return 1;
+                    }
+                    else
+                    {
+                        return 1;
+                    }
+                    
                 }
 
             }

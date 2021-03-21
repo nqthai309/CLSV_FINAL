@@ -82,13 +82,13 @@ namespace Server3
             var newUser = new users();
             newUser.username = user.username;
             newUser.password = EncodingPassword(user.password);
-            newUser.role_id = user.role_id;
+            newUser.role_id = 1;
             newUser.full_name = user.full_name;
             newUser.phone = user.phone;
             newUser.email = user.email;
             newUser.address = user.address;
-            newUser.point = user.point;
-            newUser.discount_id = user.discount_id;
+            newUser.point = 0;
+            newUser.discount_id = "1";
             context.users.Add(newUser);
             context.SaveChanges();
         }

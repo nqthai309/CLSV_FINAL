@@ -119,9 +119,7 @@ namespace CNW_N8_MVC.Controllers
         [HttpPost]
         public ActionResult RegisterCenter(users acc)
         {
-            acc.role_id = 1;
-            acc.discount_id = "default";
-            acc.point = 0;
+            string x = JsonConvert.SerializeObject(acc);
             server.FE_Register(JsonConvert.SerializeObject(acc));
             return RedirectToAction("Login", "User");
 
