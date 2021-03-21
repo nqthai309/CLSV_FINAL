@@ -713,6 +713,22 @@ namespace Server3
                          };
             return JsonConvert.SerializeObject(result);
         }
+        [WebMethod]
+        public string BE_GetOrderStatistical()
+        {
+            var result = from bk in context.bookings
+                         select new
+                         {
+                            bk.booking_id,
+                            bk.user_id,
+                            bk.time_booking,
+                            bk.total_booking_price,
+                            bk.payment_status,
+                            bk.users.full_name
+                             
+                         };
+            return JsonConvert.SerializeObject(result);
+        }
 
 
 
