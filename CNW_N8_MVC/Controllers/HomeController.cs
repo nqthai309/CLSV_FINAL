@@ -17,6 +17,7 @@ namespace CNW_N8_MVC.Controllers
 
         static Server.ServerSoapClient server = new Server.ServerSoapClient();
         public static List<ItemHotel> htList;
+        public static List<ItemHotel> htList_backup;
         public static List<ItemLocation> locList;
         private void setUsername()
         {
@@ -32,6 +33,7 @@ namespace CNW_N8_MVC.Controllers
         public ActionResult Index()
         {
             dynamic model = new ExpandoObject();
+            htList_backup = JsonConvert.DeserializeObject<List<ItemHotel>>(server.FE_GetHotel_OrderByComment());
             htList = JsonConvert.DeserializeObject<List<ItemHotel>>(server.FE_GetHotel_OrderByComment());
 
             foreach(var it in htList.ToList())

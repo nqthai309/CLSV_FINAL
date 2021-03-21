@@ -173,7 +173,7 @@ namespace CNW_N8_MVC.Controllers
             
 
 
-            var current_hotel = currentListHotel.Where(ht => ht.HotelID == hotel_id).SingleOrDefault();
+            var current_hotel = HomeController.htList_backup.Where(ht => ht.HotelID == hotel_id).SingleOrDefault();
             var convenientList = JsonConvert.DeserializeObject<List<ItemConvenient>>(server.FE_GetConvenient());
             var roomList = rooms.OrderBy(r => r.Hotel_id).ToList();
             var commentList = JsonConvert.DeserializeObject<List<ItemComment>>(server.FE_GetComment(hotel_id));
