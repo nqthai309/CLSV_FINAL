@@ -19,6 +19,8 @@ namespace CNW_N8_MVC.Areas.Backend.Controllers
         static List<BE_CommentStatistical> list = new List<BE_CommentStatistical>();
         static List<BE_OrderStatistical> orders = JsonConvert.DeserializeObject<List<BE_OrderStatistical>>(server.BE_GetOrderStatistical());
         static List<BE_OrderStatistical> list_order = new List<BE_OrderStatistical>();
+        static List<BE_TotalPriceByUser> totals = JsonConvert.DeserializeObject<List<BE_TotalPriceByUser>>(server.BE_TotalPriceByUser("", ""));
+        static List<BE_TotalPriceByUser> list_totals = new List<BE_TotalPriceByUser>();
         static string f_date_s;
         static string t_date_s;
         public ActionResult Index()
@@ -36,6 +38,105 @@ namespace CNW_N8_MVC.Areas.Backend.Controllers
             ViewData["f_date"] = f_date_s;
             ViewData["t_date"] = t_date_s;
             return View();
+        }
+        public ActionResult TotalPriceByUser()
+        {
+            ViewData["totals"] = totals;
+            ViewData["list_totals"] = list_totals;
+            ViewData["f_date"] = f_date_s;
+            ViewData["t_date"] = t_date_s;
+            return View();
+        }
+        [HttpGet]
+        public void ExportTotalPriceByUser()
+        {
+            var gv = new GridView();
+            if (list_totals.Count() != 0)
+            {
+                foreach(var it in list_totals)
+                {
+                    if (it.Total_price == "") it.Total_price = "0";
+                }
+                gv.DataSource = list_totals;
+            }
+            else
+            {
+                foreach (var it in totals)
+                {
+                    if (it.Total_price == "") it.Total_price = "0";
+                }
+                gv.DataSource = totals;
+            }
+
+            gv.DataBind();
+            Response.Clear();
+            Response.Buffer = true;
+            //Response.AddHeader("content-disposition",
+            // "attachment;filename=GridViewExport.xls");
+            Response.Charset = "utf-8";
+            Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+            Response.AddHeader("content-disposition", "attachment;filename=GridViewExport.xls");
+            //Mã hóa chữa sang UTF8
+            Response.ContentEncoding = System.Text.Encoding.UTF8;
+            Response.BinaryWrite(System.Text.Encoding.UTF8.GetPreamble());
+
+            StringWriter sw = new StringWriter();
+            HtmlTextWriter hw = new HtmlTextWriter(sw);
+
+            for (int i = 0; i < gv.Rows.Count; i++)
+            {
+                //Apply text style to each Row
+                gv.Rows[i].Attributes.Add("class", "textmode");
+            }
+            //Add màu nền cho header của file excel
+            gv.HeaderRow.BackColor = System.Drawing.Color.DarkBlue;
+            //Màu chữ cho header của file excel
+            gv.HeaderStyle.ForeColor = System.Drawing.Color.White;
+
+            gv.HeaderRow.Cells[0].Text = "Mã Khách Hàng";
+            gv.HeaderRow.Cells[1].Text = "Tên Khách Hàng";
+            gv.HeaderRow.Cells[2].Text = "Tổng Tiền";
+            gv.RenderControl(hw);
+
+            Response.Output.Write(sw.ToString());
+            Response.Flush();
+            Response.End();
+        }
+        [HttpGet]
+        public ActionResult SearchTotalPrice()
+        {
+            string t_date = Request["to_date"];
+            string f_date = Request["from_date"];
+            f_date_s = f_date;
+            t_date_s = t_date;
+            list_totals.Clear();
+            if (t_date == "" && f_date == "")
+            {
+                list_totals = totals;
+                return RedirectToAction("TotalPriceByUser", "BackendStatistical", new { area = "Backend" });
+            }
+            else if (f_date == "")
+            {
+                f_date += "2000-10-10 12:00:00AM";
+                t_date += " 12:00:00AM";
+                list_totals = JsonConvert.DeserializeObject<List<BE_TotalPriceByUser>>(server.BE_TotalPriceByUser(f_date, t_date));
+                return RedirectToAction("TotalPriceByUser", "BackendStatistical", new { area = "Backend" });
+            }
+            else if (t_date == "")
+            {
+                t_date += "2030-10-10 12:00:00AM";
+                f_date += " 12:00:00AM";
+                list_totals = JsonConvert.DeserializeObject<List<BE_TotalPriceByUser>>(server.BE_TotalPriceByUser(f_date, t_date));
+                return RedirectToAction("TotalPriceByUser", "BackendStatistical", new { area = "Backend" });
+
+            }
+            else
+            {
+                t_date += " 12:00:00AM";
+                f_date += " 12:00:00AM";
+                list_totals = JsonConvert.DeserializeObject<List<BE_TotalPriceByUser>>(server.BE_TotalPriceByUser(f_date, t_date));
+                return RedirectToAction("TotalPriceByUser", "BackendStatistical", new { area = "Backend" });
+            }
         }
         [HttpGet]
         public ActionResult SearchOrder()

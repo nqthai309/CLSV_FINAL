@@ -725,9 +725,70 @@ namespace Server3
                             bk.total_booking_price,
                             bk.payment_status,
                             bk.users.full_name
-                             
                          };
             return JsonConvert.SerializeObject(result);
+        }
+
+        [WebMethod]
+        public string BE_TotalPriceByUser(string from_date, string to_date)
+        {
+            List<BE_TotalPriceByUser> list = new List<BE_TotalPriceByUser>();
+
+            var list_user_id = context.users.Select(u => u.user_id).ToList();
+            var list_full_name = context.users.Select(u => u.full_name).ToList();
+            for(int i=0; i<list_user_id.Count(); i++)
+            {
+                if(from_date == "" || to_date == "")
+                {
+                    int id = list_user_id[i];
+                    var sumPrice = context.bookings.
+                        Where(b => b.user_id == id).
+                        Sum(b => b.total_booking_price).ToString();
+                    var newItem = new BE_TotalPriceByUser();
+                    newItem.Full_name = list_full_name[i];
+                    newItem.User_id = list_user_id[i];
+                    newItem.Total_price = sumPrice;
+                    list.Add(newItem);
+                }
+                else
+                {
+                    var f_date = Convert.ToDateTime(from_date);
+                    var t_date = Convert.ToDateTime(to_date);
+                    int id = list_user_id[i];
+                    var sumPrice = context.bookings.
+                        Where(b => b.user_id == id && b.time_booking <= t_date && b.time_booking >= f_date).
+                        Sum(b => b.total_booking_price).ToString();
+                    var newItem = new BE_TotalPriceByUser();
+                    newItem.Full_name = list_full_name[i];
+                    newItem.User_id = list_user_id[i];
+                    newItem.Total_price = sumPrice;
+                    list.Add(newItem);
+                }
+                
+            }
+
+            return JsonConvert.SerializeObject(list);
+        }
+        [WebMethod]
+        public string FE_GetHistoryOrder_User(int user_id)
+        {
+            var result = from bk in context.bookings
+                         from dt in context.booking_hotel_detail
+                         where bk.user_id == user_id && bk.booking_id == dt.booking_id
+                         select new
+                         {
+                             dt.hotels.hotel_name,
+                             dt.hotels.location_details,
+                             dt.hotel_rooms_id,
+                             dt.from_date,
+                             dt.to_date,
+                             dt.service_list,
+                             bk.total_booking_price,
+                             bk.time_booking,
+                             bk.payment_status
+                         };
+            return JsonConvert.SerializeObject(result);
+                     
         }
 
 

@@ -1,0 +1,80 @@
+﻿
+@{
+    ViewBag.Title = "TotalPriceByUser";
+    Layout = "~/Areas/Backend/Views/Shared/Backend.cshtml";
+}
+@using CNW_N8_MVC.Class;
+@{ var totals = ViewData["totals"] as IEnumerable<BE_TotalPriceByUser>;}
+@{ var list_totals = ViewData["list_totals"] as IEnumerable<BE_TotalPriceByUser>;}
+@{ var f_date = ViewData["f_date"] as String;}
+@{ var t_date = ViewData["t_date"] as String;}
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header"><i class="fa fa-align-justify"></i> Thống kê tổng hoá đơn theo tài khoản</div>
+            <div class="card-body">
+                <form method="get" action="/BackendStatistical/SearchTotalPrice">
+                    <label>Chọn ngày : </label>
+                    <input type="date" id="from_date" name="from_date" value="@f_date" />
+                    <input type="date" id="to_date" name="to_date" value="@t_date" />
+                    <button id="btnSubmit" class="btn btn-sm btn-primary" type="submit"> Submit</button>
+                </form>
+                <form method="get" action="/BackendStatistical/ExportTotalPriceByUser">
+                    <button id="btnExport" class="btn btn-sm btn-primary" type="submit"> Export</button>
+                </form>
+                <table class="table table-responsive-sm">
+                    <thead>
+                        <tr>
+                            <th>Mã Người Dùng</th>
+                            <th>Tên Người Dùng</th>
+                            <th>Tổng Doanh Thu</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (list_totals.Count() == 0)
+                        {
+                            foreach (var it in totals.OrderByDescending(t => t.Total_price))
+                            {
+                                <tr>
+                                    <td>@it.Full_name</td>
+                                    <td>@it.Full_name</td>
+                                    @if (it.Total_price == "")
+                                    {
+                                        <td>0</td>
+                                    }
+                                    else
+                                    {
+                                        <td>@it.Total_price</td>
+                                    }
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            foreach (var it in list_totals.OrderByDescending(t => t.Total_price))
+                            {
+                                <tr>
+                                    <td>@it.Full_name</td>
+                                    <td>@it.Full_name</td>
+                                    @if (it.Total_price == "")
+                                    {
+                                        <td>0</td>
+                                    }
+                                    else
+                                    {
+                                        <td>@it.Total_price</td>
+                                    }
+
+                                </tr>
+                            }
+                        }
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

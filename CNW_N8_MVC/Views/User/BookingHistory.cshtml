@@ -7,6 +7,8 @@
     @using CNW_N8_MVC.Models;*@
 
 @*@model Cart*@
+@using CNW_N8_MVC.Class;
+@{ var list_history = ViewData["list_history"] as IEnumerable<BE_HistoryBooking>;}
 <form method="post" action="/User/ThanhToan/">
     <section class="main-content" style="background-color : #e9ecef">
         <div class="container">
@@ -109,30 +111,34 @@
                                 </div>
                             </div>*@
 
-                        <table style="width:100%; border: 1px solid black; border-collapse: collapse;">
+                    <table style="width:100%; border: 1px solid black; border-collapse: collapse;">
+                        <tr>
+                            <th style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">Tên khách sạn</th>
+                            <th style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">Địa chỉ</th>
+                            <th style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">Mã phòng</th>
+                            <th style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">Ngày đến</th>
+                            <th style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">Ngày về</th>
+                            <th style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">D.vụ</th>
+                            <th style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">Tổng tiền</th>
+                            <th style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">Ngày Đặt</th>
+                            <th style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">Trạng thái</th>
+                        </tr>
+                        @foreach (var it in list_history)
+                        {
                             <tr>
-                                <th style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">Tên khách sạn</th>
-                                <th style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">Địa chỉ</th>
-                                <th style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">Mã phòng</th>
-                                <th style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">Ngày đến</th>
-                                <th style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">Ngày về</th>
-                                <th style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">D.vụ</th>
-                                <th style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">Tổng tiền</th>
-                                <th style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">Ngày Đặt</th>
-                                <th style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">Trạng thái</th>
+                                <td style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">@it.Hotel_name</td>
+                                <td style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">@it.Location_details</td>
+                                <td style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">@it.Hotel_rooms_id</td>
+                                <td style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">@it.From_date.Split('T')[0]</td>
+                                <td style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">@it.To_date.Split('T')[0]</td>
+                                <td style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">@it.Service_list</td>
+                                <td style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">@it.Total_booking_price</td>
+                                <td style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">@it.Time_booking.Split('T')[0]</td>
+                                <td style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">@it.Payment_status</td>
                             </tr>
-                            <tr>
-                                <td style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">Khách sạn abc</td>
-                                <td style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">số 31, đường Hồ Tùng Mậu, phường Mai Dịch, Quận Cầu Giấy, Hà Nội</td>
-                                <td style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">1</td>
-                                <td style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">2020/10/10</td>
-                                <td style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">2020/10/16</td>
-                                <td style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">Xe lăn, Buffet sáng, xe đưa đón</td>
-                                <td style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">10000000</td>
-                                <td style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">2020/10/05</td>
-                                <td style=" border: 1px solid black; border-collapse: collapse; padding:5px; text-align: center">Đã thanh toán</td>
-                            </tr>
-                        </table>
+                        }
+
+                    </table>
 
                         <div id="divThongBao"></div>
 

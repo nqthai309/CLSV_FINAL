@@ -166,6 +166,8 @@ namespace CNW_N8_MVC.Controllers
 
         public ActionResult BookingHistory()
         {
+            var list_history = JsonConvert.DeserializeObject<List<BE_HistoryBooking>>(server.FE_GetHistoryOrder_User(idAccount));
+            ViewData["list_history"] = list_history;
             return View();
         }
 
