@@ -54,6 +54,7 @@ namespace CNW_N8_MVC.Controllers
             if(location_name != null)
             {
                 location = location_name;
+                currentListHotel = JsonConvert.DeserializeObject<List<ItemHotel>>(server.FE_GetHotel_OrderByComment());
                 foreach(var it in currentListHotel.ToList())
                 {
                     if(it.Address != location_name)
