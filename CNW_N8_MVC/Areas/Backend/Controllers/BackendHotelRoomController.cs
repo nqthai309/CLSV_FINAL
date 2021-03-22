@@ -12,6 +12,8 @@ namespace CNW_N8_MVC.Areas.Backend.Controllers
     {
         // GET: Backend/BackendHotelRoom
         static Server.ServerSoapClient server = new Server.ServerSoapClient();
+        static List<BE_ItemHotelRoom> list_room = new List<BE_ItemHotelRoom>();
+        static string name_search = "";
         
         public ActionResult Edit(int hotel_id, int hotel_rooms_id)
         {
@@ -73,7 +75,24 @@ namespace CNW_N8_MVC.Areas.Backend.Controllers
         {
             List<BE_ItemHotelRoom> list = JsonConvert.DeserializeObject<List<BE_ItemHotelRoom>>(server.BE_GetListHotelRoom());
             ViewData["list"] = list;
+            ViewData["list_room"] = list_room;
+            ViewData["name_search"] = name_search;
             return View();
+        }
+        public ActionResult SearchName()
+        {
+            list_room.Clear();
+            var search = Request["name_search"];
+            name_search = search;
+            List<BE_ItemHotelRoom> list = JsonConvert.DeserializeObject<List<BE_ItemHotelRoom>>(server.BE_GetListHotelRoom());
+            foreach(var it in list)
+            {
+                if (it.Hotel_name.ToLower().Contains(search.ToLower()))
+                {
+                    list_room.Add(it);
+                }
+            }
+            return RedirectToAction("List", "BackendHotelRoom", new { area = "Backend" });
         }
     }
 }

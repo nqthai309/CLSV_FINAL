@@ -8,12 +8,21 @@
     Layout = "~/Areas/Backend/Views/Shared/Backend.cshtml";
 }
 @{ var bookings = ViewData["bookings"] as IEnumerable<ItemBooking>;}
+@{ var list_bk = ViewData["list_bk"] as IEnumerable<ItemBooking>;}
 
 <div class="row">
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header"><i class="fa fa-align-justify"></i> Danh sách đặt booking Hotel</div>
             <div class="card-body">
+                <form method="get" action="/BackendBooking/ChangeStatus">
+                    <select name="status">
+                        <option value="1">Đã hoàn thành</option>
+                        <option value="0">Chưa xử lý</option>
+                    </select>
+                    <button id="" class="btn btn-sm btn-primary" type="submit"> Submit</button>
+                </form>
+
                 <table class="table table-responsive-sm">
                     <thead>
                         <tr style="background-color: #ebebeb">
@@ -27,47 +36,97 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (ItemBooking it in bookings)
+                        @if (list_bk.Count() == 0)
                         {
-                            <tr class="clicker">
-                                <td>@it.BookingRoot.Booking_id </td>
-                                <td>@it.BookingRoot.User_id</td>
-                                <td>@it.BookingRoot.Time_booking.ToString().Split(' ')[0]</td>
-                                <td>@it.BookingRoot.Total_booking_price</td>
-                                <td>@it.BookingRoot.Payment_status</td>
-                                @if (it.BookingRoot.Payment_status == "Đang xử lý")
-                                {
-                                    <td><a href="@Url.Action("ConfirmHotelBooking","BackendBooking",new { @id = it.BookingRoot.Booking_id})"> X.Nhận </a></td>
-                                    <td><a class="text-warning" href="@Url.Action("DeleteHotelBooking","BackendBooking",new { @id = it.BookingRoot.Booking_id})"> Hủy </a></td>
-                                } else
-                                {
-                                    <td> </td>
-                                    <td> </td>
-                                }
-                            </tr>
-                            foreach (var booking_detail in it.ListDetail)
+                            foreach (ItemBooking it in bookings)
                             {
-                                <tr class="hidden" style="display: none; background-color: #ebebeb;">
-                                    <td>Tên khách sạn: @booking_detail.Hotel_name</td>
-                                    <td>Mã phòng: @booking_detail.Hotel_rooms_id</td>
-                                    <td>Từ ngày: @booking_detail.From_date.ToString().Split(' ')[0]</td>
-                                    <td>Đến ngày: @booking_detail.To_date.ToString().Split(' ')[0]</td>
-                                    <td>Tổng tiền phòng: @booking_detail.Total_price</td>
-                                    <td> </td>
-                                    <td> </td>
+                                <tr class="clicker">
+                                    <td>@it.BookingRoot.Booking_id </td>
+                                    <td>@it.BookingRoot.User_id</td>
+                                    <td>@it.BookingRoot.Time_booking.ToString().Split(' ')[0]</td>
+                                    <td>@it.BookingRoot.Total_booking_price</td>
+                                    <td>@it.BookingRoot.Payment_status</td>
+                                    @if (it.BookingRoot.Payment_status == "Đang xử lý")
+                                    {
+                                        <td><a href="@Url.Action("ConfirmHotelBooking", "BackendBooking", new { @id = it.BookingRoot.Booking_id })"> X.Nhận </a></td>
+                                        <td><a class="text-warning" href="@Url.Action("DeleteHotelBooking", "BackendBooking", new { @id = it.BookingRoot.Booking_id })"> Hủy </a></td>
+                                    }
+                                    else
+                                    {
+                                        <td> </td>
+                                        <td> </td>
+                                    }
                                 </tr>
-                                <tr class="hidden" style="display: none; background-color: #ebebeb">
-                                    <td>Dịch vụ: @booking_detail.Service_list</td>
-                                    <td> </td>
-                                    <td> </td>
-                                    <td> </td>
-                                    <td>Tổng tiền dịch vụ: @booking_detail.Total_services_price</td>
-                                    <td> </td>
-                                    <td> </td>
-                                </tr>
-                            }
+                                foreach (var booking_detail in it.ListDetail)
+                                {
+                                    <tr class="hidden" style="display: none; background-color: #ebebeb;">
+                                        <td>Tên khách sạn: @booking_detail.Hotel_name</td>
+                                        <td>Mã phòng: @booking_detail.Hotel_rooms_id</td>
+                                        <td>Từ ngày: @booking_detail.From_date.ToString().Split(' ')[0]</td>
+                                        <td>Đến ngày: @booking_detail.To_date.ToString().Split(' ')[0]</td>
+                                        <td>Tổng tiền phòng: @booking_detail.Total_price</td>
+                                        <td> </td>
+                                        <td> </td>
+                                    </tr>
+                                    <tr class="hidden" style="display: none; background-color: #ebebeb">
+                                        <td>Dịch vụ: @booking_detail.Service_list</td>
+                                        <td> </td>
+                                        <td> </td>
+                                        <td> </td>
+                                        <td>Tổng tiền dịch vụ: @booking_detail.Total_services_price</td>
+                                        <td> </td>
+                                        <td> </td>
+                                    </tr>
+                                }
 
+                            }
                         }
+                        else
+                        {
+                            foreach (ItemBooking it in list_bk)
+                            {
+                                <tr class="clicker">
+                                    <td>@it.BookingRoot.Booking_id </td>
+                                    <td>@it.BookingRoot.User_id</td>
+                                    <td>@it.BookingRoot.Time_booking.ToString().Split(' ')[0]</td>
+                                    <td>@it.BookingRoot.Total_booking_price</td>
+                                    <td>@it.BookingRoot.Payment_status</td>
+                                    @if (it.BookingRoot.Payment_status == "Đang xử lý")
+                                    {
+                                        <td><a href="@Url.Action("ConfirmHotelBooking","BackendBooking",new { @id = it.BookingRoot.Booking_id})"> X.Nhận </a></td>
+                                        <td><a class="text-warning" href="@Url.Action("DeleteHotelBooking","BackendBooking",new { @id = it.BookingRoot.Booking_id})"> Hủy </a></td>
+                                    }
+                                    else
+                                    {
+                                        <td> </td>
+                                        <td> </td>
+                                    }
+                                </tr>
+                                foreach (var booking_detail in it.ListDetail)
+                                {
+                                    <tr class="hidden" style="display: none; background-color: #ebebeb;">
+                                        <td>Tên khách sạn: @booking_detail.Hotel_name</td>
+                                        <td>Mã phòng: @booking_detail.Hotel_rooms_id</td>
+                                        <td>Từ ngày: @booking_detail.From_date.ToString().Split(' ')[0]</td>
+                                        <td>Đến ngày: @booking_detail.To_date.ToString().Split(' ')[0]</td>
+                                        <td>Tổng tiền phòng: @booking_detail.Total_price</td>
+                                        <td> </td>
+                                        <td> </td>
+                                    </tr>
+                                    <tr class="hidden" style="display: none; background-color: #ebebeb">
+                                        <td>Dịch vụ: @booking_detail.Service_list</td>
+                                        <td> </td>
+                                        <td> </td>
+                                        <td> </td>
+                                        <td>Tổng tiền dịch vụ: @booking_detail.Total_services_price</td>
+                                        <td> </td>
+                                        <td> </td>
+                                    </tr>
+                                }
+
+                            }
+                        }
+
                     </tbody>
                 </table>
 

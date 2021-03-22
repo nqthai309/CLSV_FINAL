@@ -20,6 +20,8 @@ namespace CNW_N8_MVC.Areas.Backend.Controllers
         static Server.ServerSoapClient server = new Server.ServerSoapClient();
         public static List<ItemLocation> locList = JsonConvert.DeserializeObject<List<ItemLocation>>(server.FE_GetListLocation());
         static List<BE_ItemHotel> currentHotel;
+        static List<BE_ItemHotel> hotel_search = new List<BE_ItemHotel>();
+        static string name_search = "";
 
         // GET: BackendHotel
         public ActionResult AddHotelRoom(int? id)
@@ -65,6 +67,8 @@ namespace CNW_N8_MVC.Areas.Backend.Controllers
             var hotels = JsonConvert.DeserializeObject<List<BE_ItemHotel>>(server.BE_GetListHotel());
             currentHotel = hotels;
             ViewData["hotels"] = hotels;
+            ViewData["hotel_search"] = hotel_search;
+            ViewData["name_search"] = name_search;
             return View();
         }
 
@@ -198,6 +202,21 @@ namespace CNW_N8_MVC.Areas.Backend.Controllers
                     return 0;
                 }
             }
+        }
+        public ActionResult SearchName()
+        {
+            var name = Request["name_search"];
+            var hotels = JsonConvert.DeserializeObject<List<BE_ItemHotel>>(server.BE_GetListHotel());
+            hotel_search.Clear();
+            name_search = name;
+            foreach(var it in hotels)
+            {
+                if (it.Hotel_name.ToLower().Contains(name.ToLower()))
+                {
+                    hotel_search.Add(it);
+                }
+            }
+            return RedirectToAction("List", "BackendHotel", new { area = "Backend" });
         }
     }
 }

@@ -1,15 +1,24 @@
 ﻿
 @using CNW_N8_MVC.Class;
 @{ var list = ViewData["list"] as IEnumerable<BE_ItemHotelRoom>;}
+@{ var list_room = ViewData["list_room"] as IEnumerable<BE_ItemHotelRoom>;}
+@{ var nameSearch = ViewData["name_search"] as String;}
 @{
     ViewBag.Title = "List";
     Layout = "~/Areas/Backend/Views/Shared/Backend.cshtml";
 }
+
 <div class="row">
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header"><i class="fa fa-align-justify"></i> Danh sách Phòng Khách Sạn</div>
             <div class="card-body">
+                <form method="get" action="/BackendHotelRoom/SearchName">
+                    <div>
+                        <input class="form-control" id="" type="text" name="name_search" value="@nameSearch" placeholder="Tên Khách Sạn">
+                        <button id="" class="btn btn-sm btn-primary" type="submit"> Submit</button>
+                    </div>
+                </form>
                 <table class="table table-responsive-sm">
                     <thead>
                         <tr>
@@ -25,22 +34,45 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var it in list)
+                        @if (list_room.Count() == 0)
                         {
-                            <tr>
-                                <td>@it.Hotel_rooms_id</td>
-                                <td>@it.Hotel_name</td>
-                                <td>@it.Acreage m2</td>
-                                <td>tầng @it.Floors</td>
-                                <td>@it.Limit_people người</td>
-                                <td>@it.Bed_count giường</td>
-                                <td>@it.Price</td>
-                                <td>@it.Sell_price</td>
+                            foreach (var it in list)
+                            {
+                                <tr>
+                                    <td>@it.Hotel_rooms_id</td>
+                                    <td>@it.Hotel_name</td>
+                                    <td>@it.Acreage m2</td>
+                                    <td>tầng @it.Floors</td>
+                                    <td>@it.Limit_people người</td>
+                                    <td>@it.Bed_count giường</td>
+                                    <td>@it.Price</td>
+                                    <td>@it.Sell_price</td>
 
-                                <td><a href="@Url.Action("Edit","BackendHotelRoom", new {@hotel_id = it.Hotel_id, @hotel_rooms_id = it.Hotel_rooms_id})">Sửa</a></td>
-                                <td><a style="color:red" href="@Url.Action("DeleteHotelRoom","BackendHotelRoom",new {@hotel_id = it.Hotel_id, @hotel_rooms_id = it.Hotel_rooms_id})">Xoá</a></td>
-                            </tr>
+                                    <td><a href="@Url.Action("Edit", "BackendHotelRoom", new { @hotel_id = it.Hotel_id, @hotel_rooms_id = it.Hotel_rooms_id })">Sửa</a></td>
+                                    <td><a style="color:red" href="@Url.Action("DeleteHotelRoom", "BackendHotelRoom", new { @hotel_id = it.Hotel_id, @hotel_rooms_id = it.Hotel_rooms_id })">Xoá</a></td>
+                                </tr>
+                            }
                         }
+                        else
+                        {
+                            foreach (var it in list_room)
+                            {
+                                <tr>
+                                    <td>@it.Hotel_rooms_id</td>
+                                    <td>@it.Hotel_name</td>
+                                    <td>@it.Acreage m2</td>
+                                    <td>tầng @it.Floors</td>
+                                    <td>@it.Limit_people người</td>
+                                    <td>@it.Bed_count giường</td>
+                                    <td>@it.Price</td>
+                                    <td>@it.Sell_price</td>
+
+                                    <td><a href="@Url.Action("Edit","BackendHotelRoom", new {@hotel_id = it.Hotel_id, @hotel_rooms_id = it.Hotel_rooms_id})">Sửa</a></td>
+                                    <td><a style="color:red" href="@Url.Action("DeleteHotelRoom","BackendHotelRoom",new {@hotel_id = it.Hotel_id, @hotel_rooms_id = it.Hotel_rooms_id})">Xoá</a></td>
+                                </tr>
+                            }
+                        }
+
                     </tbody>
                 </table>
             </div>
