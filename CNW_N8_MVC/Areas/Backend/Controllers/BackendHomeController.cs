@@ -49,13 +49,13 @@ namespace CNW_N8_MVC.Areas.Backend.Controllers
         }
 
 
-        [HttpGet]
+        [HttpPost]
         public ActionResult LoginCenter(users acc)
         {
-            var result = server.BE_FindUserByUsername_Password(acc.username, acc.password);
+            var result = JsonConvert.DeserializeObject<List<users>>(server.BE_FindUserByUsername_Password(acc.username, acc.password));
             if(result.Count() == 0)
             {
-                return View("LoginFail");
+                return RedirectToAction("Login", "BackendHome", new { area = "Backend" });
             }
             else
             {
